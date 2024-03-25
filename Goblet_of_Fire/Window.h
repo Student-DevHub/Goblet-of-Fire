@@ -1,36 +1,54 @@
 #pragma once
+#ifndef WINDOW_H
+#define WINDOW_H
+
 #include <string>
+#include <memory>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-class Window {
-public:
-	Window(); // Default Window
-	Window(const std::string& title, const sf::Vector2u& size); // Custom Window
-	~Window();
+namespace GobletOfFire {
+  class Window : public std::enable_shared_from_this<Window> {
+  public:
+    Window(const std::string& title = "Window", const sf::Vector2u& size = { 640, 480 }) {
+      setUp(title, size);
 
-	void BeginDraw(); //Clear Screen
-	void EndDraw(); // Display
+      create();
+    }
+    Window(const GobletOfFire::Window& other) {
+      setUp(other.window_title_, other.window_size_, other.is_fullscreen_);
+      is_creation_done_ = false;
 
-	void Update(); // Poll events (Close / Toggle Fullscreen)
+      create();
+    }
+    ~Window() { destroy(); }
 
-	bool IsDone();
-	bool IsFullscreen();
-	sf::RenderWindow* GetRenderWindow();
-	sf::Vector2u GetWindowSize();
+    inline void beginDraw() { window_.clear(sf::Color::Black); }
+    inline void draw(sf::Drawable& l_drawable) { window_.draw(l_drawable); }
+    inline void endDraw() { window_.display(); }
 
-	void ToggleFullscreen();
+    inline void toggleFullScreen() {
+      is_fullscreen_ = !is_fullscreen_;
+      destroy();
+      create();
+    }
 
-	void Draw(sf::Drawable& l_drawable);
-private:
-	void Setup(const std::string title, const sf::Vector2u& size); // Assign values to member variables
-	void Create(); // Create Window using member variables
-	void Destroy(); // Close Window
+    inline bool isCreated() const { return is_creation_done_; }
+    inline bool isFullScreen() const { return is_fullscreen_; }
+    inline sf::Vector2u getWindowSize() const { return window_size_; }
+    inline bool getPollEvent(sf::Event& event) { return window_.pollEvent(event); }
 
-	// Keep track of window properties (for toggle fullscreen)
-	sf::RenderWindow m_window;
-	sf::Vector2u m_windowSize;
-	std::string m_windowTitle;
-	bool m_isDone;
-	bool m_isFullscreen;
-};
+  private:
+    void setUp(const std::string& window_title, const sf::Vector2u& window_size, bool is_fullscreen = false);
+    void create();
+    void destroy();
+
+    sf::RenderWindow window_;
+    sf::Vector2u window_size_;
+    std::string window_title_;
+    bool is_creation_done_;
+    bool is_fullscreen_;
+  };
+}
+
+#endif
