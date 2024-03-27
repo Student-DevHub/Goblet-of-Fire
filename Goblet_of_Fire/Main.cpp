@@ -1,24 +1,22 @@
 #include <iostream>
-#include <string>
+#include <memory>
 #include <thread>
-#include <chrono>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include "Window.h"
 
-int main(int argc, char* argv[]) {
-	GobletOfFire::Window myWindow("Goblet of Fire");
+class MyClass {
+public:
+  void myFunction() {
+    std::cout << "Hello from myFunction!" << std::endl;
+  }
+};
 
-	while (myWindow.isCreated()) {
-		sf::Event event;
-		if (myWindow.getPollEvent(event)) {
-			if (event.type == sf::Event::Closed)
-				break;
-		}
+int main() {
+  std::shared_ptr<MyClass> ptr = std::make_shared<MyClass>();
 
-		myWindow.beginDraw();
-		myWindow.endDraw();
-	}
+  // Create a jthread and pass the member function directly
+  std::jthread t(&MyClass::myFunction, ptr.get());
 
-	return EXIT_SUCCESS;
+  // Wait for the thread to finish
+  t.join();
+
+  return 0;
 }

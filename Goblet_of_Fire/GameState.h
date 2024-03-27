@@ -6,6 +6,7 @@
 #include <memory>
 #include <iostream>
 #include <thread>
+#include "GobletOfFire.namespace.h"
 #include "GobletOfFire.h"
 #include "Window.h"
 
@@ -17,10 +18,14 @@ namespace GobletOfFire {
       virtual void end() = 0;
       virtual void renderEverything() = 0;
     };
+  }
+}
 
-    class TestingState : public GameState {
+namespace GobletOfFire {
+  namespace tests {
+    class TestingState : public CoreGame::GameState {
     public:
-      TestingState(std::shared_ptr<CoreGame::GobletofFire> game_ptr, std::shared_ptr<Window> main_window)
+      TestingState(std::shared_ptr<CoreGame::GobletofFire> game_ptr, std::shared_ptr<Graphics::Window> main_window)
         : game_ptr_(game_ptr), main_window_(main_window), state_exist_(true) {}
 
       virtual void handleInput() override {
@@ -30,11 +35,12 @@ namespace GobletOfFire {
 
           if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::M)
-              game_ptr_->changeGameState(std::make_shared<CoreGame::TestingState>(game_ptr_, main_window_));
+              game_ptr_->changeGameState(std::make_shared<tests::TestingState>(game_ptr_, main_window_));
             else if (event.key.code == sf::Keyboard::F5)
               main_window_->toggleFullScreen();
           }
-          
+          if (event.type == sf::Event::Closed)
+            GobletOfFire::gameStatus = false;
         }
       }
 
@@ -47,7 +53,7 @@ namespace GobletOfFire {
 
     private:
       std::shared_ptr<CoreGame::GobletofFire> game_ptr_;
-      std::shared_ptr<Window> main_window_;
+      std::shared_ptr<Graphics::Window> main_window_;
       bool state_exist_;
     };
   }
