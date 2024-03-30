@@ -20,16 +20,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GobletOfFire.cpp" />
+    <ClCompile Include="GobletOfFire.namespace.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameState.h" />
+    <ClInclude Include="MagicScreen.h" />
     <ClInclude Include="GobletOfFire.h" />
     <ClInclude Include="GobletOfFire.namespace.h" />
+    <ClInclude Include="TestingClasses.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="Wizard.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

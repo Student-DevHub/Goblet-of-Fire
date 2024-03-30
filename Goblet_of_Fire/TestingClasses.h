@@ -1,29 +1,15 @@
 #pragma once
-#ifndef GAME_STATE
-#define GAME_STATE
+#ifndef TEST_H
+#define TEST_H
 
-#include <string>
 #include <memory>
-#include <iostream>
-#include <thread>
-#include "GobletOfFire.namespace.h"
-#include "GobletOfFire.h"
 #include "Window.h"
-
-namespace GobletOfFire {
-  namespace CoreGame {
-    class GameState {
-    public:
-      virtual void handleInput() = 0;
-      virtual void end() = 0;
-      virtual void renderEverything() = 0;
-    };
-  }
-}
+#include "MagicScreen.h"
+#include "GobletOfFire.namespace.h"
 
 namespace GobletOfFire {
   namespace tests {
-    class TestingState : public CoreGame::GameState {
+    class TestingState : public CoreGame::MagicScreen {
     public:
       TestingState(std::shared_ptr<CoreGame::GobletofFire> game_ptr, std::shared_ptr<Graphics::Window> main_window)
         : game_ptr_(game_ptr), main_window_(main_window), state_exist_(true) {}
@@ -35,7 +21,7 @@ namespace GobletOfFire {
 
           if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::M)
-              game_ptr_->changeGameState(std::make_shared<tests::TestingState>(game_ptr_, main_window_));
+              game_ptr_->changeMagicScreen(std::make_shared<tests::TestingState>(game_ptr_, main_window_));
             else if (event.key.code == sf::Keyboard::F5)
               main_window_->toggleFullScreen();
           }
@@ -45,7 +31,7 @@ namespace GobletOfFire {
       }
 
       virtual void end() override { state_exist_ = false; }
-      
+
       virtual void renderEverything() override {
         main_window_->beginDraw();
         main_window_->endDraw();
@@ -58,4 +44,5 @@ namespace GobletOfFire {
     };
   }
 }
+
 #endif

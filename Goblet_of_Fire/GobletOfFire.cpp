@@ -1,8 +1,9 @@
 #include "GobletOfFire.h"
+#include "TestingClasses.h"
 
 namespace GobletOfFire {
   namespace CoreGame {
-    GobletofFire::GobletofFire(const std::string& title = "Goblet of Fire", const sf::Vector2u& size = { 1280, 720 }) 
+    GobletofFire::GobletofFire(const std::string& title, const sf::Vector2u& size) 
       : main_window_(std::make_shared<Graphics::Window>(title, size)) {
       std::cout << "Running main constructor!" << std::endl;
     }
@@ -10,11 +11,43 @@ namespace GobletOfFire {
     void GobletofFire::run() {
       //load the content from all the files using async from std::future
       loadFilesAsync(); //it is empty for now
-      current_state_ = std::make_shared<tests::TestingState>(shared_from_this(), main_window_);
+      changeMagicScreen(std::make_shared<tests::TestingState>(shared_from_this(), main_window_));
 
-      io_thread = std::move(std::make_unique<std::jthread>(&tests::TestingState::handleInput, current_state_.get()));
-      
       mainLoop();
     }
+
+    void GobletofFire::changeMagicScreen(std::shared_ptr<CoreGame::MagicScreen> new_screen) {
+      if (Ui_interface_thread) {
+        current_magic_screen_->end();
+        Ui_interface_thread->join();
+      }
+
+      current_magic_screen_ = new_screen;
+
+      Ui_interface_thread = std::make_unique<std::jthread>([this]() {
+                              current_magic_screen_->handleInput();
+                            });
+    }
+
+    void GobletofFire::setMainGameStatus(bool gameStatus) {
+      GobletOfFire::gameStatus = gameStatus;
+    }
+
+    void GobletofFire::loadFilesAsync() {}
+    
+    void GobletofFire::mainLoop() {
+      while (gameStatus) {
+        std::lock_guard<std::mutex> lock(Graphics::window_creation);
+        main_window_->beginDraw();
+        current_magic_screen_->renderEverything();
+        main_window_->endDraw();
+      }
+
+      if (Ui_interface_thread) {
+        current_magic_screen_->end();
+        Ui_interface_thread->join();
+      }
+    }
+
   }
 }

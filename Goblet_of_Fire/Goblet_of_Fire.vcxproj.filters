@@ -27,8 +27,11 @@
     <ClCompile Include="GobletOfFire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
+    <ClCompile Include="Wizard.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GobletOfFire.namespace.cpp">
+      <Filter>Utility Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,11 +41,17 @@
     <ClInclude Include="GobletOfFire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
+    <ClInclude Include="MagicScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GobletOfFire.namespace.h">
       <Filter>Utility Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestingClasses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
