@@ -33,7 +33,7 @@ namespace GobletOfFire {
       inline void endDraw() { window_.display(); }
 
       inline void toggleFullScreen() {
-        std::lock_guard<std::mutex> lock(Graphics::window_creation);
+        std::unique_lock<std::mutex> lock(Graphics::window_creation);
         is_fullscreen_ = !is_fullscreen_;
         destroy();
         create();

@@ -37,7 +37,7 @@ namespace GobletOfFire {
     
     void GobletofFire::mainLoop() {
       while (gameStatus) {
-        std::lock_guard<std::mutex> lock(Graphics::window_creation);
+        std::unique_lock<std::mutex> lock(Graphics::window_creation);
         main_window_->beginDraw();
         current_magic_screen_->renderEverything();
         main_window_->endDraw();

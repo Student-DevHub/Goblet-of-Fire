@@ -11,7 +11,7 @@ struct Box
   std::mutex m;
 };
 
-void transfer(Box& from, Box& to, int num)
+static void transfer(Box& from, Box& to, int num)
 {
   // don't actually take the locks yet
   std::cout << "Worker thread: Waiting to acquire lock...\n";
