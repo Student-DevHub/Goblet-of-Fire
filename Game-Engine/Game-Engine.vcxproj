@@ -19,15 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Goblet_of_Fire\Window.cpp" />
-    <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="CoreEngine.cpp" />
+    <ClCompile Include="Namespaces.ns.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Goblet_of_Fire\Window.h" />
-    <ClInclude Include="GameLoop.h" />
-    <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="CoreEngine.hpp" />
+    <ClInclude Include="InputHandler.hpp" />
+    <ClInclude Include="Namespaces.ns.hpp" />
+    <ClInclude Include="ObjectManager.hpp" />
+    <ClInclude Include="ResourceManager.hpp" />
+    <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="TestScene.hpp" />
+    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
