@@ -42,7 +42,7 @@ namespace GobletOfFire {
       inline bool isCreated() const { return is_creation_done_; }
       inline bool isFullScreen() const { return is_fullscreen_; }
       inline sf::Vector2u getWindowSize() const { return window_size_; }
-      inline bool getPollEvent(sf::Event& event) { return window_.pollEvent(event); }
+      inline bool getPollEvent(sf::Event& event) { return window_.waitEvent(event); }
 
     private:
       void setUp(const std::string& window_title, const sf::Vector2u& window_size, bool is_fullscreen = false);
