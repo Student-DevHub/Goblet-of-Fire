@@ -41,13 +41,15 @@ namespace GobletOfFire {
       
       std::unique_ptr<Core::ThreadPool> engine_thread_pool_; //thread pool only for he engine
       std::shared_ptr<Graphics::Window> main_window_; //the main window of the game
+      std::mutex window_creation_;
+
 
       // I might change its position, maybe create a config struct? 
       uint32_t target_frame_rate_;
       std::chrono::milliseconds frame_duration_;
 
       std::atomic<bool> stop_; //the atomic variable to terminate the execution of the engine.
-      std::mutex stop_mutex_; //to sync stop() and shouldStop() functions
+
     };
 
   }
