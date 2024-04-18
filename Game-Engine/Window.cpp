@@ -31,7 +31,6 @@ namespace GobletOfFire {
     }
 
     void Window::toggleFullScreen() {
-      std::unique_lock<std::mutex> lock(Graphics::window_creation);
       is_fullscreen_ = !is_fullscreen_;
       destroy();
       create();
