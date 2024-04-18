@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoreEngine.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Namespaces.ns.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
@@ -36,7 +37,7 @@
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="TestScene.hpp" />
     <ClInclude Include="ThreadPool.hpp" />
-    <ClInclude Include="TimeManager.hpp" />
+    <ClInclude Include="Time.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

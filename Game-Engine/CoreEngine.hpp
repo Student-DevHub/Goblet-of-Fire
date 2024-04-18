@@ -15,7 +15,7 @@
 #include "SceneManager.hpp"
 #include "Window.hpp"
 #include "ThreadPool.hpp"
-#include "TimeManager.hpp"
+#include "Time.hpp"
 
 namespace GobletOfFire {
   namespace Core {

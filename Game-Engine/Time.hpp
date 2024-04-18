@@ -9,8 +9,12 @@
 namespace GobletOfFire {
   namespace Utilities {
 
-    class TimeManager {
+    class Time {
     public:
+      using clock = std::chrono::steady_clock;
+      using timePoint = std::chrono::time_point<clock>;
+      using duration = std::chrono::milliseconds;
+
       template <typename DurationType = duration, typename Clock = clock>
       static duration getTimeElapsed(const std::chrono::time_point<Clock>& time_point) {
         auto currentTime = Clock::now();

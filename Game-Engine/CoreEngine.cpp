@@ -24,8 +24,9 @@ namespace GobletOfFire {
       engine_thread_pool_->enqueue([this] { processInputPoll(); });
 
       //maintain the frame duration and display the active buffer
+      using namespace GobletOfFire::Utilities;
       while (!stop) {
-        auto start_time = clock::now();
+        auto start_time = Time::clock::now();
 
         {
           std::unique_lock<std::mutex> lock(window_creation_); //obtain the ownership of the std::mutex
@@ -42,9 +43,9 @@ namespace GobletOfFire {
         }
 
         //if the task was completed before the frame duration, sleep for the remaining time
-        auto time_elapsed = Utilities::TimeManager::getTimeElapsed(start_time);
+        auto time_elapsed = Utilities::Time::getTimeElapsed(start_time);
         auto remaining_time = frame_duration_ - time_elapsed;
-        if (remaining_time > duration(0)) {
+        if (remaining_time > Time::duration(0)) {
           std::this_thread::sleep_for(remaining_time);
         }
 

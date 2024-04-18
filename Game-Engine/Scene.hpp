@@ -5,7 +5,6 @@
 #include <memory>
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 #include "Namespaces.ns.hpp"
 #include "SceneManager.hpp"
@@ -20,8 +19,10 @@ namespace GobletOfFire {
       virtual void activate() = 0;
       virtual void deactivate() = 0;
 
-      virtual void processInput(const sf::Event&) = 0;
-      virtual void render() = 0;
+      virtual void updateLogic() = 0;
+      virtual void updateRender() = 0;
+
+      inline virtual std::shared_ptr<sf::RenderTexture> getBuffer() const = 0;
     };
   }
 }

@@ -13,26 +13,7 @@
 
 namespace GobletOfFire {
   namespace TestClasses {
-    class TestScene : public Core::Scene {
-    public:
-      TestScene();
-
-      virtual void create() override;
-      virtual void destroy() override;
-
-      virtual void activate() override;
-      virtual void deactivate() override;
-
-      virtual void processInput(const sf::Event&) override;
-
-      bool getActivate() const { return activate_; }
-
-    private: 
-      std::atomic<bool> activate_;
-
-      std::unique_ptr<sf::Shape> shape_;
-
-    };
+    
   }
 }
 

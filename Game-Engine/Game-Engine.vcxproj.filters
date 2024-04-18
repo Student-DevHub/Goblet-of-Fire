@@ -41,6 +41,9 @@
     <ClCompile Include="TimeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.hpp">
@@ -70,7 +73,7 @@
     <ClInclude Include="ThreadPool.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="TimeManager.hpp">
+    <ClInclude Include="Time.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.hpp">

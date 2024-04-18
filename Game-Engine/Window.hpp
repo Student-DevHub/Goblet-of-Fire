@@ -8,6 +8,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "Namespaces.ns.hpp"
 
@@ -20,7 +21,7 @@ namespace GobletOfFire {
       ~Window();
 
       void beginDraw();
-      void draw(sf::Drawable& l_drawable);
+      void draw(const sf::Drawable& drawable);
       void endDraw();
       void toggleFullScreen();
 

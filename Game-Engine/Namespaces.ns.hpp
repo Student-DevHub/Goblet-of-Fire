@@ -2,10 +2,15 @@
 #ifndef NAMESPACES_HPP
 #define NAMESPACES_HPP
 
-#include <mutex>
-#include <atomic>
+#include <SFML/System.hpp>
 
 namespace GobletOfFire {
+  
+
+  
+
+
+
   namespace Core {
     class CoreEngine; //main loop
     class SceneManager; //manages the scenes to be displayed
@@ -17,11 +22,12 @@ namespace GobletOfFire {
   }
 
   namespace Physics {
-
+    template<typename T>
+    using point_2 = sf::Vector2<T>;
   }
 
   namespace Input {
-
+    class InputManager;
   }
 
   namespace Scene {
@@ -34,11 +40,8 @@ namespace GobletOfFire {
     class TestScene; //just for the sake of test
   }
 
-  using clock = std::chrono::steady_clock;
-  using timePoint = std::chrono::time_point<clock>;
-  using duration = std::chrono::milliseconds;
   namespace Utilities {
-    class TimeManager;
+    class Time;
   }
   
 }
