@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreEngine.hpp" />
-    <ClInclude Include="InputHandler.hpp" />
+    <ClInclude Include="InputManager.hpp" />
     <ClInclude Include="Namespaces.ns.hpp" />
     <ClInclude Include="ObjectManager.hpp" />
     <ClInclude Include="ResourceManager.hpp" />

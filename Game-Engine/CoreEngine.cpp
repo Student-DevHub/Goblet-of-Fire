@@ -49,6 +49,7 @@ namespace GobletOfFire {
         }
 
       }
+      engine_thread_pool_.reset(); //make sure to call the destructor of thread pool to join the threads before running the destructor of the engine itself
     }
 
     void CoreEngine::stop() {

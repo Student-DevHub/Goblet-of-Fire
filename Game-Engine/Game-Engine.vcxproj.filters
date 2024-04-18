@@ -61,9 +61,6 @@
     <ClInclude Include="CoreEngine.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandler.hpp">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.hpp">
       <Filter>Interfaces</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
     </ClInclude>
     <ClInclude Include="TimeManager.hpp">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.hpp">
+      <Filter>Class headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

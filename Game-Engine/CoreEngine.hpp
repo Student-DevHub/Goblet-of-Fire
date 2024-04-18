@@ -13,6 +13,7 @@
 
 #include "Namespaces.ns.hpp"
 #include "SceneManager.hpp"
+#include "Window.hpp"
 #include "ThreadPool.hpp"
 #include "TimeManager.hpp"
 
@@ -22,12 +23,13 @@ namespace GobletOfFire {
     class CoreEngine : public std::enable_shared_from_this<Core::CoreEngine> {
     public:
       CoreEngine(); //empty constructor. Maybe I will convert this class into singleton.
+      ~CoreEngine() {} //empty for now
 
       void init(); //initialize the resources 
       void run(); //the main loop is on the main thread; it is responsible for showing the active buffer on the screen
-      void stop(); //this will stop the engine
+      inline void stop(); //this will stop the engine
 
-      bool shouldStop() const; //will be accessable to all the classes
+      inline bool shouldStop() const; //will be accessable to all the classes
 
     private:
       //this function will run some frames with heavy computations and long range loops
