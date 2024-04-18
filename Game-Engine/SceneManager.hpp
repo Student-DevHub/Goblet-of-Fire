@@ -8,6 +8,9 @@
 #include <mutex>
 #include <atomic>
 
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
 #include "Namespaces.ns.hpp"
 #include "Window.hpp"
 #include "Scene.hpp"
@@ -18,8 +21,11 @@ namespace GobletOfFire {
     public:
       SceneManager();
 
-      void processInput();
-      void render();
+      void logicLoop();
+      void renderLoop();
+
+      std::shared_ptr<sf::RenderTexture> getActiveBuffer() const;
+      void updateActiveBuffer();
 
       std::uint32_t addNewScene(std::shared_ptr<Core::Scene>);
       void switchTo(std::uint32_t);
