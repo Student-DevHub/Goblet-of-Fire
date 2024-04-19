@@ -13,7 +13,6 @@
 #include "Window.hpp"
 
 namespace GobletOfFire {
-  using namespace Physics;
   namespace Input {
     class InputManager {
     public:
@@ -26,28 +25,33 @@ namespace GobletOfFire {
 
       void update();
 
-      bool isKeyPressed(InputManager::Key) const;
-      bool isKeyDown(InputManager::Key) const;
-      bool isKeyUp(InputManager::Key) const;
+      bool isKeyPressed(Key);
+      bool isKeyReleased(Key);
+      bool isKeyUp(Key);
+      bool isKeyDown(Key);
 
       bool leftMouseButton() const;
       bool rightMouseButton() const;
-      point_2<int32_t> getMousePoint() const;
+      Physics::point2<int32_t> getMousePoint() const;
+
+      void setFocus(bool);
+      bool getFocus() const;
 
     private:
-      InputManager();
-      static std::shared_ptr<InputManager> instance_;
-      static std::mutex instance_mut_;
+      InputManager(std::shared_ptr<Graphics::Window>);
+      static std::atomic<std::shared_ptr<InputManager>> instance_; //to share a single instance of the `InputManager` everywhere in the program
+      std::shared_ptr<Graphics::Window> window_ptr_; //
+      std::atomic<bool> focus_; //`true` if the window is focused else `false`
 
-      std::atomic<bool> focus;
+      using keyMap = std::unordered_map<Key, bool>;
+      std::vector<keyMap> key_status_; //two `std::unordered_map` to add KeyReleased function
+      std::uint32_t active_ : 1; //1-bit unsigned integer current `keyMap`
 
-      std::vector<std::unordered_map<InputManager::Key, bool>> key_status_;
-
-      bool leftMouseButton, rightMouseButton;
-      point_2<int32_t> mousePoint;
+      bool leftMouseButton_, rightMouseButton_; //flags for mouse buttons
+      Physics::point2<int32_t> mousePoint_;
     };
 
-    std::shared_ptr<InputManager> InputManager::instance_ = nullptr;
+    std::atomic<std::shared_ptr<InputManager>> InputManager::instance_(nullptr); //no copy constructor for `std::atomic` 
   }
 }
 

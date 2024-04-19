@@ -10,8 +10,8 @@
 #include "SceneManager.hpp"
 
 namespace GobletOfFire {
-  namespace Core {
-    class Scene : public std::enable_shared_from_this<Core::Scene> {
+  namespace Scenes {
+    class Scene : public std::enable_shared_from_this<Scenes::Scene> {
     public:
       virtual void create() = 0;
       virtual void destroy() = 0;

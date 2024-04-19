@@ -3,6 +3,7 @@
 #define WINDOW_H
 
 #include <string>
+#include <cstdint>
 #include <memory>
 #include <mutex>
 
@@ -15,20 +16,25 @@
 namespace GobletOfFire {
   namespace Graphics {
     class Window : public std::enable_shared_from_this<Window> {
+    private: 
+      //just declare the alias
+      using point2 = Physics::point2<std::uint32_t>;
     public:
-      Window(const std::string& title = "Window", const sf::Vector2u& size = { 640, 480 });
-      Window(const Graphics::Window& other);
+      Window(const std::string& title = "Window", const point2& size = { 640, 480 });
+      Window(const Graphics::Window&);
       ~Window();
 
       void beginDraw();
-      void draw(const sf::Drawable& drawable);
+      void draw(const sf::Drawable&);
       void endDraw();
       void toggleFullScreen();
 
       bool isCreated() const;
       bool isFullScreen() const;
       sf::Vector2u getWindowSize() const;
-      bool getPollEvent(sf::Event& event);
+      bool pollEvent(sf::Event&);
+
+      const sf::RenderWindow& getRenderWindow() const;
 
     private:
       void setUp(const std::string& window_title, const sf::Vector2u& window_size, bool is_fullscreen = false);
@@ -36,7 +42,7 @@ namespace GobletOfFire {
       void destroy();
 
       sf::RenderWindow window_;
-      sf::Vector2u window_size_;
+      point2 window_size_;
       std::string window_title_;
       bool is_creation_done_;
       bool is_fullscreen_;

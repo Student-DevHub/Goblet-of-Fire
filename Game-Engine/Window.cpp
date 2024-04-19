@@ -2,7 +2,7 @@
 
 namespace GobletOfFire {
   namespace Graphics {
-    Window::Window(const std::string& title, const sf::Vector2u& size) {
+    Window::Window(const std::string& title, const point2& size) {
       setUp(title, size);
       is_creation_done_ = false;
       create();
@@ -22,7 +22,7 @@ namespace GobletOfFire {
       window_.clear(sf::Color::Black);
     }
 
-    void Window::draw(sf::Drawable& l_drawable) {
+    void Window::draw(const sf::Drawable& l_drawable) {
       window_.draw(l_drawable);
     }
 
@@ -48,11 +48,11 @@ namespace GobletOfFire {
       return window_size_;
     }
 
-    bool Window::getPollEvent(sf::Event& event) {
+    bool Window::pollEvent(sf::Event& event) {
       return window_.waitEvent(event);
     }
 
-    void Window::setUp(const std::string& window_title, const sf::Vector2u& window_size, bool is_fullscreen) {
+    void Window::setUp(const std::string& window_title, const point2& window_size, bool is_fullscreen) {
       this->window_title_ = window_title;
       this->window_size_ = window_size;
       this->is_fullscreen_ = is_fullscreen;
@@ -71,5 +71,7 @@ namespace GobletOfFire {
       is_creation_done_ = false;
       window_.close();
     }
+
+    const sf::RenderWindow& Window::getRenderWindow() const { return window_; }
   }
 }

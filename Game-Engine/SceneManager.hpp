@@ -24,10 +24,11 @@ namespace GobletOfFire {
 
       //these loops will run in two different threads. 
       //this could also have been done in a single thread but before shaping it this way, I had a different plan in my mind
-      void logicLoop(); //update the logic of the scene
+      void logicLoop(); //update the logic of the scene 
       void renderLoop(); //render the scene in it's buffer
 
-      static enum class Scenes {
+      //key for different scenes, may be moved to Scene::
+      static enum class Scene {
         kNone,
         kMainMenu, 
         kCharacterSelection,
@@ -37,18 +38,27 @@ namespace GobletOfFire {
         kResult
       };
 
+      //get the active sf::RenderTexture 
       std::shared_ptr<sf::RenderTexture> getActiveBuffer() const;
+      //get the buffer from the current scene and update the active buffer
       void updateActiveBuffer();
 
-      void addNewScene(std::pair<Scenes, std::unique_ptr<Core::Scene>>&);
-      void switchTo(SceneManager::Scenes);
-      void remove(SceneManager::Scenes);
+      //pretty straight forward thing...
+      void addNewScene(std::pair<Scene, std::unique_ptr<Scenes::Scene>>&);
+      void switchTo(SceneManager::Scene);
+      void remove(SceneManager::Scene);
 
     private:
+      //shared reference of the main_engine...
       std::shared_ptr<Core::CoreEngine> main_engine_;
 
-      std::unordered_map<SceneManager::Scenes, std::unique_ptr<Core::Scene>> scenes_;
-      SceneManager::Scenes current_scene_;
+      //shared references of the scenes, mapped by keys
+      //added custom hash functor to hash enum
+      std::unordered_map<
+        SceneManager::Scene, 
+        std::shared_ptr<Scenes::Scene>> scenes_;
+
+      SceneManager::Scene current_scene_;
       mutable std::mutex scene_change_mut_;
 
       std::shared_ptr<sf::RenderTexture> active_buffer_;
