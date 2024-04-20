@@ -10,39 +10,56 @@ namespace GobletOfFire {
       window_ptr_(window_ptr) {}
 
     std::shared_ptr<Input::InputManager> InputManager::getInstance() {
+      //if the `instance_` is `nullptr`, make one
       if (!instance_.load()) {
         auto instance = std::make_shared<InputManager>();
         instance_.store(instance);
       }
-
+      //load the instance and return
       return instance_.load();
     }
 
     void InputManager::update() {
+      //if the active is 1, make it 0, else make it 1
       active_ = active_ ^ 1;
+      auto& current_map = key_status_[active_];
 
-      if(!focus_.load()){
+      //if the window is out of focus, turn of all the active keys, ignore the mouse buttons. 
+      if(!getFocus()){
         key_status_[active_].clear();
         leftMouseButton_ = false;
         rightMouseButton_ = false;
+        //mouse pointer can't be ignored cuz we can do hover animation if we want to even if the window is out of focus
+        updateMousePointer(); 
+        return;
       }
 
-      auto& current_map = key_status_[active_];
+      updateKeyboard(current_map);
+      updateMouse();
+    }
 
-      using kyb = sf::Keyboard;
-      current_map[Key::kW] = kyb::isKeyPressed(kyb::W);
-      current_map[Key::kA] = kyb::isKeyPressed(kyb::A);
-      current_map[Key::kS] = kyb::isKeyPressed(kyb::S);
-      current_map[Key::kD] = kyb::isKeyPressed(kyb::D);
-      current_map[Key::kUp] = kyb::isKeyPressed(kyb::Up);
-      current_map[Key::kDown] = kyb::isKeyPressed(kyb::Down);
-      current_map[Key::kLeft] = kyb::isKeyPressed(kyb::Left);
-      current_map[Key::kRight] = kyb::isKeyPressed(kyb::Right);
+    void InputManager::updateKeyboard(std::unordered_map<Key, bool>& map) {
+      //update all the keys
+      map[Key::kW] = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+      map[Key::kA] = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+      map[Key::kS] = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+      map[Key::kD] = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+      map[Key::kUp] = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+      map[Key::kDown] = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+      map[Key::kLeft] = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+      map[Key::kRight] = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+    }
 
-      using ms = sf::Mouse;
-      leftMouseButton_ = ms::isButtonPressed(ms::Left);
-      rightMouseButton_ = ms::isButtonPressed(ms::Right);
+    void InputManager::updateMouse() {
+      //update mouse buttons and pointer
+      leftMouseButton_ = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+      rightMouseButton_ = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
+      updateMousePointer();
+    }
+
+    void InputManager::updateMousePointer() {
+      //getting mouse position relative to the window
       const auto& window = window_ptr_->getRenderWindow();
       auto mousePosition = sf::Mouse::getPosition(window);
 
@@ -51,7 +68,8 @@ namespace GobletOfFire {
         mousePosition.x >= 0 && mousePosition.x < window.getSize().x &&
         mousePosition.y >= 0 && mousePosition.y < window.getSize().y);
 
-      mousePoint_ = insideWindow ? 
+      //if inside, move the pointer, else reset the coordinates
+      mousePoint_ = insideWindow ?
         std::move(mousePosition) : std::move(Physics::point2<int32_t>{-1, -1});
     }
 
@@ -59,14 +77,15 @@ namespace GobletOfFire {
       auto& curr_map = key_status_[active_];
       auto& prev_map = key_status_[active_ ^ 1];
 
-      return (!prev_map[key]) && curr_map[key];
+      // (false)' && (true)
+      return (!prev_map[key]) && curr_map[key]; 
     }
 
     bool InputManager::isKeyReleased(Key key) {
       auto& curr_map = key_status_[active_];
       auto& prev_map = key_status_[active_ ^ 1];
 
-
+      // (false)' && (true)
       return (!curr_map[key]) && prev_map[key];
     }
 
@@ -74,6 +93,7 @@ namespace GobletOfFire {
       auto& curr_map = key_status_[active_];
       auto& prev_map = key_status_[active_ ^ 1];
 
+      // (true) && (true)
       return curr_map[key] && prev_map[key];
     }
 
@@ -81,7 +101,27 @@ namespace GobletOfFire {
       auto& curr_map = key_status_[active_];
       auto& prev_map = key_status_[active_ ^ 1];
 
+      // (true)' && (true)' (NOR here)
       return !(curr_map[key] || prev_map[key]);
+    }
+
+    bool InputManager::leftMouseButton() const {
+      return leftMouseButton_;
+    }
+    bool InputManager::rightMouseButton() const {
+      return rightMouseButton_;
+    }
+    Physics::point2<int32_t> InputManager::getMousePoint() const {
+      return mousePoint_;
+    }
+
+    //will be used by `CoreEngine`
+    void InputManager::setFocus(bool focus) {
+      focus_.store(focus);
+    }
+
+    bool InputManager::getFocus() const {
+      return focus_.load();
     }
   }
 }

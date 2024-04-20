@@ -11,8 +11,6 @@
 *.sln.docstates
 SFML-2.6.1/
 Graphics/
-learnSFML/
-Goblet_of_Fire/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -38,6 +38,11 @@ namespace GobletOfFire {
       bool getFocus() const;
 
     private:
+      //update the inputs (helper functions)
+      void updateKeyboard(std::unordered_map<Key, bool>&);
+      void updateMouse();
+      void updateMousePointer();
+
       InputManager(std::shared_ptr<Graphics::Window>);
       static std::atomic<std::shared_ptr<InputManager>> instance_; //to share a single instance of the `InputManager` everywhere in the program
       std::shared_ptr<Graphics::Window> window_ptr_; //
