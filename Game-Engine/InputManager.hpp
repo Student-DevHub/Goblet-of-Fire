@@ -9,8 +9,7 @@
 
 #include <SFML/Window.hpp>
 
-#include "Namespaces.ns.hpp"
-#include "Window.hpp"
+#include "Graphics.hpp"
 
 namespace GobletOfFire {
   namespace Input {
@@ -45,10 +44,10 @@ namespace GobletOfFire {
       void updateKeyboard(std::unordered_map<Key, bool>&);
       void updateMouse();
       void updateMousePointer();
+      void clear();
 
-      InputManager(const InputManager&) {}
-      InputManager(const std::shared_ptr<Graphics::Window>& = nullptr);
-      static std::weak_ptr<InputManager> instance_; //to share a single instance of the `InputManager` everywhere in the program
+      InputManager(const std::shared_ptr<Graphics::Window>&);
+      static std::shared_ptr<InputManager> instance_; //to share a single instance of the `InputManager` everywhere in the program
 
       std::shared_ptr<Graphics::Window> window_ptr_; //window for updating the mouse
       std::atomic<bool> focus_; //`true` if the window is focused else `false`
@@ -57,11 +56,9 @@ namespace GobletOfFire {
       std::vector<keyMap> key_status_; //two `std::unordered_map` to add KeyReleased function
       std::uint32_t active_ : 1; //1-bit unsigned integer current `keyMap`
 
-      bool leftMouseButton_, rightMouseButton_; //flags for mouse buttons
-      Physics::point2<int32_t> mousePoint_;
+      bool l_mouse_, r_mouse_; //flags for mouse buttons
+      Physics::point2<int32_t> mouse_position_;
     };
-
-    //std::shared_ptr<InputManager> InputManager::instance_{ nullptr }; //no copy constructor for `std::atomic` 
   }
 }
 

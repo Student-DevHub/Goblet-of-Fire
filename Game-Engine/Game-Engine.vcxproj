@@ -22,21 +22,25 @@
     <ClCompile Include="CoreEngine.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Namespaces.ns.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core.hpp" />
     <ClInclude Include="CoreEngine.hpp" />
+    <ClInclude Include="Graphics.hpp" />
+    <ClInclude Include="Input.hpp" />
     <ClInclude Include="InputManager.hpp" />
-    <ClInclude Include="Namespaces.ns.hpp" />
     <ClInclude Include="ObjectManager.hpp" />
+    <ClInclude Include="Physics.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="Scenes.hpp" />
     <ClInclude Include="ThreadPool.hpp" />
     <ClInclude Include="Time.hpp" />
+    <ClInclude Include="Utilities.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

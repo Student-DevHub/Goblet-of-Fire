@@ -11,15 +11,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "Namespaces.ns.hpp"
+#include "Physics.hpp"
+#include "Input.hpp"
 
 namespace GobletOfFire {
   namespace Graphics {
-    class Window : public std::enable_shared_from_this<Window> {
+    class Window {
     public:
-      using point2 = Physics::point2<std::uint32_t>;
-      Window(const std::string& title = "Window", const point2& size = { 640, 480 });
-      Window(const Graphics::Window&);
+      Window(const std::string & = "Window", const Physics::point2<std::uint32_t> & = { 640, 480 });
+      Window(const Window&) = delete; // Disable copy constructor
+      Window& operator=(const Window&) = delete; // Disable copy assignment operator
       ~Window();
 
       void beginDraw();
@@ -29,20 +30,18 @@ namespace GobletOfFire {
 
       bool isCreated() const;
       bool isFullScreen() const;
-      sf::Vector2u getWindowSize() const;
-      bool pollEvent(sf::Event&);
-
-      const sf::RenderWindow& getRenderWindow() const;
+      Physics::point2<std::uint32_t> getWindowSize() const;
+      Physics::point2<std::int32_t> getWindowPosition() const; 
+      bool pollEvent(Input::inputEvent&);
 
     private:
-      void setUp(const std::string& window_title, const sf::Vector2u& window_size, bool is_fullscreen = false);
+      void setUp(const std::string&, const Physics::point2<std::uint32_t>&, bool = false);
       void create();
       void destroy();
 
-      sf::RenderWindow window_;
-      point2 window_size_;
+      std::unique_ptr<sf::RenderWindow> window_;
+      Physics::point2<std::uint32_t> window_size_;
       std::string window_title_;
-      bool is_creation_done_;
       bool is_fullscreen_;
     };
   }

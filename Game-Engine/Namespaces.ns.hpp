@@ -41,21 +41,6 @@ namespace GobletOfFire {
   namespace Utilities {
     class Time;
   }
-
-  namespace Template {
-    struct EnumHashFunc {
-      template <typename T>
-      std::size_t operator() (T t) {
-        return static_cast<std::size_t>(t);
-      }
-    };
-
-    template <typename Key>
-    using HashType = typename std::conditional<std::is_enum_v<Key>, EnumHashFunc, std::hash<Key>>::type;
-
-    template <class Key, typename T>
-    using enum_unordered_map = std::unordered_map<Key, T, HashType<Key>>;
-  }
   
 }
 

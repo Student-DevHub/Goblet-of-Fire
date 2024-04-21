@@ -49,7 +49,10 @@ namespace GobletOfFire {
 
     void SceneManager::updateActiveBuffer() {
       std::unique_lock<std::mutex> lock(update_buffer_mut_);
-      active_buffer_ = scenes_[current_scene_]->getBuffer();
+
+      if (current_scene_ != Scene::kNone) {
+        active_buffer_ = scenes_[current_scene_]->getBuffer();
+      }
       update_buffer_cv_.notify_one();
     }
 

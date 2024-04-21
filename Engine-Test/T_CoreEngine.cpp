@@ -32,53 +32,28 @@ namespace GobletOfFire {
     }
 
     void CoreEngine::run() {
-
       //assign threads the main components of the game
-      //engine_thread_pool_->enqueue([this] { scene_manager_->logicLoop(); });
-      //engine_thread_pool_->enqueue([this] { scene_manager_->renderLoop(); });
-      engine_thread_pool_->enqueue([this] { processInputPoll(); });
-
-      std::cerr << "Tasks assigned to threads" << std::endl;
+      engine_thread_pool_->enqueue([this] { scene_manager_->logicLoop(); });
+      engine_thread_pool_->enqueue([this] { scene_manager_->renderLoop(); });
 
       //maintain the frame duration and display the active buffer
       while (!shouldStop()) {
-        
         auto start_time = Utilities::Time::clock::now();
-
         {
           //obtain the ownership of the `std::mutex`
           std::unique_lock<std::mutex> lock(window_creation_);
-          //std::cerr << "Inside the main loop" << std::endl;
-          
-          //sf::Event event;
-          //while (main_window_->pollEvent(event)) {
-          //  if (event.type == sf::Event::Closed) {
-          //    stop();
-          //    break;
-          //  }
-          //}
-
-          main_window_->beginDraw();
-          auto ptr_texture = scene_manager_->getActiveBuffer();
-
-          //make sure pointer isn't `nullptr`
-          if (ptr_texture) {
-            sf::Sprite sprite_to_draw(ptr_texture->getTexture());
-            main_window_->draw(sprite_to_draw);
-          }
-
-          main_window_->endDraw();
+          processInputPoll();
+          displayWindow();
         }
-
         //if the task was completed before the frame duration, sleep for the remaining time
         auto time_elapsed = Utilities::Time::getTimeElapsed(start_time);
         auto remaining_time = frame_duration_ - time_elapsed;
         if (remaining_time > Utilities::Time::duration(0)) {
           std::this_thread::sleep_for(remaining_time);
         }
-
       }
       //make sure to call the destructor of thread pool to join the threads before running the destructor of the engine itself
+      //free the memory of the pointer
       engine_thread_pool_.reset();
     }
 
@@ -92,13 +67,10 @@ namespace GobletOfFire {
 
     void CoreEngine::processInputPoll() {
       sf::Event event;
-
-      while (!shouldStop()) {
-        main_window_->pollEvent(event);
-        std::cerr << "Event polled!" << std::endl;
-
+      while (main_window_->pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
           stop();
+          break;
           //Input::InputManager::getInstance()->setFocus(false);
         }
         else if (event.type == sf::Event::LostFocus) {
@@ -107,10 +79,20 @@ namespace GobletOfFire {
         else if (event.type == sf::Event::GainedFocus) {
           //Input::InputManager::getInstance()->setFocus(true);
         }
+      }
+    }
+    
+    void CoreEngine::displayWindow() {
+      main_window_->beginDraw();
+      auto ptr_texture = scene_manager_->getActiveBuffer();
 
+      //make sure pointer isn't `nullptr`
+      if (ptr_texture) {
+        sf::Sprite sprite_to_draw(ptr_texture->getTexture());
+        main_window_->draw(sprite_to_draw);
       }
 
+      main_window_->endDraw();
     }
-
   }
 }

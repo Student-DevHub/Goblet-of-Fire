@@ -11,15 +11,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Namespaces.ns.hpp"
-#include "CoreEngine.hpp"
-#include "Scene.hpp"
+#include "Core.hpp"
+#include "Scenes.hpp"
 
 namespace GobletOfFire {
   namespace Core {
     class SceneManager : public std::enable_shared_from_this<Core::SceneManager> {
     public:
-      SceneManager(const std::shared_ptr<Core::CoreEngine>&);
+      SceneManager(const std::shared_ptr<CoreEngine>&);
       ~SceneManager() {} //empty for now
 
       //these loops will run in two different threads. 
@@ -30,10 +29,10 @@ namespace GobletOfFire {
       //key for different scenes, may be moved to Scene::
       enum class Scene {
         kNone,
-        kMainMenu, 
+        kMainMenu,
         kCharacterSelection,
         kMapSelection,
-        k1v1, 
+        k1v1,
         kPause,
         kResult
       };
@@ -52,10 +51,9 @@ namespace GobletOfFire {
       //shared reference of the main_engine...
       std::shared_ptr<Core::CoreEngine> main_engine_;
 
-      //shared references of the scenes, mapped by keys
-      //added custom hash functor to hash enum
+      //shared references of the scenes, mapped by scene enum
       std::unordered_map<
-        SceneManager::Scene, 
+        SceneManager::Scene,
         std::shared_ptr<Scenes::Scene>> scenes_;
 
       SceneManager::Scene current_scene_;

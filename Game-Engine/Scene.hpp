@@ -6,9 +6,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Namespaces.ns.hpp"
-#include "SceneManager.hpp"
-
 namespace GobletOfFire {
   namespace Scenes {
     class Scene : public std::enable_shared_from_this<Scenes::Scene> {

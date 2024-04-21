@@ -2,8 +2,6 @@
 #ifndef CORE_ENGINE_HPP
 #define CORE_ENGINE_HPP
 
-#include <iostream>
-
 #include <memory>
 #include <cstdint>
 #include <chrono>
@@ -12,12 +10,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-
-namespace GobletOfFire {
-  namespace Core {
-    class SceneManager;
-  }
-}
 
 #include "T_SceneManager.h"
 #include "T_Window.h"
@@ -51,8 +43,9 @@ namespace GobletOfFire {
       //it will help the game to determine what is the prefered fps for the pc that is running the game
       void calculateSuitableFPS();
 
-      //this function will detect global related inputs like resizing, window close, full screen etc.
+      //helper functions for the main thread loop
       void processInputPoll();
+      void displayWindow();
 
       //Manages the sequences of the scene and active buffer
       //also contains the logic and render loops

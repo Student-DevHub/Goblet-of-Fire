@@ -1,5 +1,4 @@
-#include "CoreEngine.hpp"
-#include "InputManager.hpp"
+#include "Core.hpp"
 
 int main() {
   auto engine = std::make_shared<GobletOfFire::Core::CoreEngine>();

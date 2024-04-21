@@ -2,15 +2,8 @@
 
 namespace GobletOfFire {
   namespace Graphics {
-    Window::Window(const std::string& title, const point2& size) {
-      setUp(title, size);
-      is_creation_done_ = false;
-      create();
-    }
-
-    Window::Window(const Graphics::Window& other) {
-      setUp(other.window_title_, other.window_size_, other.is_fullscreen_);
-      is_creation_done_ = false;
+    Window::Window(const std::string& title, const Physics::point2<std::uint32_t>& size)
+      : window_(nullptr), window_size_(size), window_title_(title), is_fullscreen_(false) {
       create();
     }
 
@@ -19,15 +12,18 @@ namespace GobletOfFire {
     }
 
     void Window::beginDraw() {
-      window_.clear(sf::Color::Black);
+      if (window_)
+        window_->clear(sf::Color::Black);
     }
 
     void Window::draw(const sf::Drawable& l_drawable) {
-      window_.draw(l_drawable);
+      if (window_)
+        window_->draw(l_drawable);
     }
 
     void Window::endDraw() {
-      window_.display();
+      if (window_)
+        window_->display();
     }
 
     void Window::toggleFullScreen() {
@@ -37,41 +33,42 @@ namespace GobletOfFire {
     }
 
     bool Window::isCreated() const {
-      return is_creation_done_;
+      return window_ != nullptr && window_->isOpen();
     }
 
     bool Window::isFullScreen() const {
       return is_fullscreen_;
     }
 
-    sf::Vector2u Window::getWindowSize() const {
+    Physics::point2<std::uint32_t> Window::getWindowSize() const {
       return window_size_;
     }
 
-    bool Window::pollEvent(sf::Event& event) {
-      return window_.waitEvent(event);
+    Physics::point2<std::int32_t> Window::getWindowPosition() const {
+      return isCreated() ?
+        window_->getPosition() : 
+        Physics::point2<std::int32_t>(-1, -1);
     }
 
-    void Window::setUp(const std::string& window_title, const point2& window_size, bool is_fullscreen) {
+    bool Window::pollEvent(Input::inputEvent& event) {
+      return window_ && window_->pollEvent(event);
+    }
+
+    void Window::setUp(const std::string& window_title, const Physics::point2<std::uint32_t>& window_size, bool is_fullscreen) {
       this->window_title_ = window_title;
       this->window_size_ = window_size;
       this->is_fullscreen_ = is_fullscreen;
     }
 
     void Window::create() {
-      if (is_creation_done_)
-        return;
-
-      auto fullScreen = is_fullscreen_ ? sf::Style::Fullscreen : sf::Style::Default;
-      window_.create(sf::VideoMode(window_size_.x, window_size_.y), window_title_, fullScreen);
-      is_creation_done_ = true;
+      if (!window_) {
+        auto style = is_fullscreen_ ? sf::Style::Fullscreen : sf::Style::Default;
+        window_ = std::make_unique<sf::RenderWindow>(sf::VideoMode(window_size_.x, window_size_.y), window_title_, style);
+      }
     }
 
     void Window::destroy() {
-      is_creation_done_ = false;
-      window_.close();
+      window_.reset(); // Release the resource
     }
-
-    const sf::RenderWindow& Window::getRenderWindow() const { return window_; }
   }
 }

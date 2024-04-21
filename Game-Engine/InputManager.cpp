@@ -2,20 +2,22 @@
 
 namespace GobletOfFire {
   namespace Input {
+    std::shared_ptr<InputManager> InputManager::instance_{ nullptr };
+
     InputManager::InputManager(const std::shared_ptr<Graphics::Window>& window_ptr)
       : focus_(true), 
-        leftMouseButton_(false), rightMouseButton_(false), mousePoint_(-1, -1),
-      key_status_(std::move(std::vector<keyMap>(2))), active_(0),
-      window_ptr_(window_ptr) {}
+        l_mouse_(false), r_mouse_(false), mouse_position_(-1, -1),
+        key_status_(std::move(std::vector<keyMap>(2))), active_(0),
+        window_ptr_(window_ptr) {}
 
     void InputManager::init(std::shared_ptr<Graphics::Window> window) {
-        auto instance = std::make_shared<InputManager>((window));
-        instance_= instance;
+      std::shared_ptr<InputManager> i(new InputManager(window));
+      instance_ = std::move(i);
     }
 
     std::shared_ptr<Input::InputManager> InputManager::getInstance() {
       //load the instance and return
-      return instance_.lock();
+      return instance_;
     }
 
     void InputManager::update() {
@@ -23,13 +25,18 @@ namespace GobletOfFire {
       active_ = active_ ^ 1;
       auto& current_map = key_status_[active_];
 
+      //if window is not created (means closed), then clear all inputs. 
+      if (!window_ptr_->isCreated()) {
+        clear();
+      }
+
       //if the window is out of focus, turn of all the active keys, ignore the mouse buttons. 
       if(!getFocus()){
         key_status_[active_].clear();
-        leftMouseButton_ = false;
-        rightMouseButton_ = false;
+        l_mouse_ = false;
+        r_mouse_ = false;
         //mouse pointer can't be ignored cuz we can do hover animation if we want to even if the window is out of focus
-        updateMousePointer(); 
+        updateMousePointer();
         return;
       }
 
@@ -51,25 +58,45 @@ namespace GobletOfFire {
 
     void InputManager::updateMouse() {
       //update mouse buttons and pointer
-      leftMouseButton_ = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-      rightMouseButton_ = sf::Mouse::isButtonPressed(sf::Mouse::Right);
+      l_mouse_ = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+      r_mouse_ = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
       updateMousePointer();
     }
 
     void InputManager::updateMousePointer() {
       //getting mouse position relative to the window
-      const auto& window = window_ptr_->getRenderWindow();
-      auto mousePosition = sf::Mouse::getPosition(window);
+      auto mouse_position = sf::Mouse::getPosition();
+      auto window_position = window_ptr_->getWindowPosition();
+      auto window_size = window_ptr_->getWindowSize();
 
-      // Check if the mouse is inside the window
-      bool insideWindow = (
-        (mousePosition.x >= 0) && (mousePosition.x < window.getSize().x) &&
-        (mousePosition.y >= 0) && (mousePosition.y < window.getSize().y));
+      //if window is destroyed already
+      if (window_position.x == window_position.y && window_position.x == -1) {
+        mouse_position_ = Physics::point2<int32_t>{ -1, -1 };
+      }
+      //if window is not destroyed, but need to find if the position is within the window...
+      else { 
+        mouse_position.x -= window_position.x;
+        mouse_position.y -= window_position.y;
 
-      //if inside, move the pointer, else reset the coordinates
-      mousePoint_ = insideWindow ?
-        std::move(mousePosition) : std::move(Physics::point2<int32_t>{-1, -1});
+        bool insideWindow = (
+          (mouse_position.x >= 0) && (mouse_position.x < window_size.x) &&
+          (mouse_position.y >= 0) && (mouse_position.y < window_size.y));
+        
+        mouse_position_ = insideWindow ? 
+          mouse_position : Physics::point2<int32_t>{-1, -1};
+      }
+    }
+
+    void InputManager::clear() {
+      // Clear all the keys in the current key status map
+      auto& current_map = key_status_[active_];
+      current_map.clear();
+
+      // Reset mouse button states and position
+      l_mouse_ = false;
+      r_mouse_ = false;
+      mouse_position_ = Physics::point2<int32_t>{ -1, -1 };
     }
 
     bool InputManager::isKeyPressed(Key key) {
@@ -105,13 +132,13 @@ namespace GobletOfFire {
     }
 
     bool InputManager::leftMouseButton() const {
-      return leftMouseButton_;
+      return l_mouse_;
     }
     bool InputManager::rightMouseButton() const {
-      return rightMouseButton_;
+      return r_mouse_;
     }
     Physics::point2<int32_t> InputManager::getMousePoint() const {
-      return mousePoint_;
+      return mouse_position_;
     }
 
     //will be used by `CoreEngine`
