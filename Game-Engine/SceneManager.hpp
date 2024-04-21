@@ -19,14 +19,11 @@ namespace GobletOfFire {
     class SceneManager : public std::enable_shared_from_this<Core::SceneManager> {
     public:
       SceneManager(const std::shared_ptr<CoreEngine>&);
-      ~SceneManager() {} //empty for now
+      ~SceneManager() {}
 
-      //these loops will run in two different threads. 
-      //this could also have been done in a single thread but before shaping it this way, I had a different plan in my mind
-      void logicLoop(); //update the logic of the scene 
-      void renderLoop(); //render the scene in it's buffer
+      void logicLoop(); 
+      void renderLoop();
 
-      //key for different scenes, may be moved to Scene::
       enum class Scene {
         kNone,
         kMainMenu,
@@ -34,34 +31,29 @@ namespace GobletOfFire {
         kMapSelection,
         k1v1,
         kPause,
-        kResult
+        kResult,
+        kTest
       };
 
-      //get the active sf::RenderTexture 
       std::shared_ptr<sf::RenderTexture> getActiveBuffer() const;
-      //get the buffer from the current scene and update the active buffer
       void updateActiveBuffer();
 
-      //pretty straight forward thing...
-      void addNewScene(std::pair<Scene, std::shared_ptr<Scenes::Scene>>&);
+      void addNewScene(const std::pair<Scene, std::shared_ptr<Scenes::Scene>>&);
       void switchTo(SceneManager::Scene);
       void remove(SceneManager::Scene);
 
     private:
-      //shared reference of the main_engine...
       std::shared_ptr<Core::CoreEngine> main_engine_;
 
-      //shared references of the scenes, mapped by scene enum
       std::unordered_map<
         SceneManager::Scene,
-        std::shared_ptr<Scenes::Scene>> scenes_;
+        std::shared_ptr<Scenes::Scene>> scenes_;  
 
       SceneManager::Scene current_scene_;
       mutable std::mutex scene_change_mut_;
 
       std::shared_ptr<sf::RenderTexture> active_buffer_;
       mutable std::mutex update_buffer_mut_;
-      std::condition_variable update_buffer_cv_;
 
       std::atomic<bool> logic_status_;
       std::atomic<bool> render_status_;

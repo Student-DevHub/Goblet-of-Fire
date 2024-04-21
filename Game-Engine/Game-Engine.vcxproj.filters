@@ -40,6 +40,9 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.hpp">
@@ -87,5 +90,6 @@
     <ClInclude Include="InputManager.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
+    <ClInclude Include="TestScene.hpp" />
   </ItemGroup>
 </Project>

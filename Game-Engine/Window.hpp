@@ -19,8 +19,8 @@ namespace GobletOfFire {
     class Window {
     public:
       Window(const std::string & = "Window", const Physics::point2<std::uint32_t> & = { 640, 480 });
-      Window(const Window&) = delete; // Disable copy constructor
-      Window& operator=(const Window&) = delete; // Disable copy assignment operator
+      Window(const Window&) = delete; 
+      Window& operator=(const Window&) = delete; 
       ~Window();
 
       void beginDraw();

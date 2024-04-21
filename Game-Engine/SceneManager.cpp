@@ -3,28 +3,32 @@
 
 namespace GobletOfFire {
   namespace Core {
-    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine> &main_engine)
+    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine)
       : current_scene_(Scene::kNone), main_engine_(main_engine),
-        active_buffer_(nullptr), render_status_(true), logic_status_(false) {}
+        active_buffer_(nullptr), render_status_(true), logic_status_(false) {
+      auto scene = std::make_pair<Scene, std::shared_ptr<Scenes::Scene>>(Scene::kTest, std::make_shared<Scenes::MyScene>());
+      addNewScene(scene);
+      switchTo(scene.first);
+    }
 
     void SceneManager::logicLoop() {
 
-      while(!main_engine_->shouldStop()) { //first see  if the game is running
-        std::unique_lock<std::mutex> lock(update_mut_); //lock to use `std::condition_variable`  
-        update_cv_.wait(lock, [this] { return render_status_.load(); }); //if the `render_status_` is false, then wait and release the lock, unlocking `renderLoop()`
+      while(!main_engine_->shouldStop()) { 
+        std::unique_lock<std::mutex> lock(update_mut_); 
+        update_cv_.wait(lock, [this] { return render_status_.load(); }); 
 
-        render_status_.store(false); //mark the `render_status_` as false since the logic will be updated in the following statement
+        render_status_.store(false); 
         if(current_scene_ != Scene::kNone) {
           scenes_[current_scene_]->updateLogic();
         }
-        logic_status_.store(true); //update the `logic_status_`
+        logic_status_.store(true); 
 
-        update_cv_.notify_one(); //notify the `renderLoop()`
+        update_cv_.notify_one(); 
       }
       
     }
 
-    void SceneManager::renderLoop() { //similar to `logicLoop()`
+    void SceneManager::renderLoop() {
 
       while (!main_engine_->shouldStop()) {
         std::unique_lock<std::mutex> lock(update_mut_);
@@ -53,10 +57,9 @@ namespace GobletOfFire {
       if (current_scene_ != Scene::kNone) {
         active_buffer_ = scenes_[current_scene_]->getBuffer();
       }
-      update_buffer_cv_.notify_one();
     }
 
-    void SceneManager::addNewScene(std::pair<Scene, std::shared_ptr<Scenes::Scene>> &scene) {
+    void SceneManager::addNewScene(const std::pair<Scene, std::shared_ptr<Scenes::Scene>> &scene) {
       auto it = scenes_.insert(std::move(scene));
       if (it.second) {
         it.first->second->create();
@@ -71,7 +74,9 @@ namespace GobletOfFire {
       }
 
       std::unique_lock<std::mutex> scene_change_;
-      scenes_[current_scene_] ->deactivate();
+      if (current_scene_ != Scene::kNone) {
+        scenes_[current_scene_]->deactivate();
+      }
       it->second->activate();
 
       current_scene_ = it->first;

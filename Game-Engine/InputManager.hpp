@@ -20,11 +20,9 @@ namespace GobletOfFire {
         kUp, kDown, kLeft, kRight
       };
 
-      //share single instance everywhere
-      static void init(std::shared_ptr<Graphics::Window>);
       static std::shared_ptr<Input::InputManager> getInstance();
 
-      //update the keys and mouse status
+      void addWindow(std::shared_ptr<Graphics::Window> window);
       void update();
 
       bool isKeyPressed(Key);
@@ -40,23 +38,21 @@ namespace GobletOfFire {
       bool getFocus() const;
 
     private:
-      //update the inputs (helper functions)
-      void updateKeyboard(std::unordered_map<Key, bool>&);
+      void updateKeyboard();
       void updateMouse();
       void updateMousePointer();
       void clear();
 
-      InputManager(const std::shared_ptr<Graphics::Window>&);
-      static std::shared_ptr<InputManager> instance_; //to share a single instance of the `InputManager` everywhere in the program
+      InputManager();
 
-      std::shared_ptr<Graphics::Window> window_ptr_; //window for updating the mouse
-      std::atomic<bool> focus_; //`true` if the window is focused else `false`
+      std::shared_ptr<Graphics::Window> window_ptr_; 
+      std::atomic<bool> focus_;
 
       using keyMap = std::unordered_map<Key, bool>;
-      std::vector<keyMap> key_status_; //two `std::unordered_map` to add KeyReleased function
-      std::uint32_t active_ : 1; //1-bit unsigned integer current `keyMap`
+      std::vector<keyMap> key_status_;
+      std::uint32_t active_ : 1; 
 
-      bool l_mouse_, r_mouse_; //flags for mouse buttons
+      bool l_mouse_, r_mouse_; 
       Physics::point2<int32_t> mouse_position_;
     };
   }

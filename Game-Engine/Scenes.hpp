@@ -13,5 +13,6 @@ namespace GobletOfFire {
 }
 
 #include "Scene.hpp"
+#include "TestScene.hpp"
 
 #endif // !SCENES_HP
