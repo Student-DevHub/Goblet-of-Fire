@@ -16,10 +16,8 @@
 namespace GobletOfFire {
   namespace Graphics {
     class Window : public std::enable_shared_from_this<Window> {
-    private: 
-      //just declare the alias
-      using point2 = Physics::point2<std::uint32_t>;
     public:
+      using point2 = Physics::point2<std::uint32_t>;
       Window(const std::string& title = "Window", const point2& size = { 640, 480 });
       Window(const Graphics::Window&);
       ~Window();

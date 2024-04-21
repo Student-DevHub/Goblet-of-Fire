@@ -16,13 +16,16 @@ namespace GobletOfFire {
   namespace Input {
     class InputManager {
     public:
-      static enum class Key {
+      enum class Key {
         kW, kA, kS, kD,
         kUp, kDown, kLeft, kRight
       };
 
+      //share single instance everywhere
+      static void init(std::shared_ptr<Graphics::Window>);
       static std::shared_ptr<Input::InputManager> getInstance();
 
+      //update the keys and mouse status
       void update();
 
       bool isKeyPressed(Key);
@@ -43,9 +46,11 @@ namespace GobletOfFire {
       void updateMouse();
       void updateMousePointer();
 
-      InputManager(std::shared_ptr<Graphics::Window>);
-      static std::atomic<std::shared_ptr<InputManager>> instance_; //to share a single instance of the `InputManager` everywhere in the program
-      std::shared_ptr<Graphics::Window> window_ptr_; //
+      InputManager(const InputManager&) {}
+      InputManager(const std::shared_ptr<Graphics::Window>& = nullptr);
+      static std::weak_ptr<InputManager> instance_; //to share a single instance of the `InputManager` everywhere in the program
+
+      std::shared_ptr<Graphics::Window> window_ptr_; //window for updating the mouse
       std::atomic<bool> focus_; //`true` if the window is focused else `false`
 
       using keyMap = std::unordered_map<Key, bool>;
@@ -56,7 +61,7 @@ namespace GobletOfFire {
       Physics::point2<int32_t> mousePoint_;
     };
 
-    std::atomic<std::shared_ptr<InputManager>> InputManager::instance_(nullptr); //no copy constructor for `std::atomic` 
+    //std::shared_ptr<InputManager> InputManager::instance_{ nullptr }; //no copy constructor for `std::atomic` 
   }
 }
 

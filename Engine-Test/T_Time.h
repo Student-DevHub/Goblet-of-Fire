@@ -1,10 +1,6 @@
 #pragma once
-#ifndef TIME_MANAGER_HPP
-#define TIME_MANAGER_HPP
 
 #include <chrono>
-
-#include "Namespaces.ns.hpp"
 
 namespace GobletOfFire {
   namespace Utilities {
@@ -26,5 +22,3 @@ namespace GobletOfFire {
 
   }
 }
-
-#endif // !TIME_MANAGER_HPP

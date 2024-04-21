@@ -32,16 +32,16 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TimeManager.cpp">
+    <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,9 +66,6 @@
     </ClInclude>
     <ClInclude Include="ObjectManager.hpp">
       <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.hpp">
-      <Filter>Class headers</Filter>
     </ClInclude>
     <ClInclude Include="ThreadPool.hpp">
       <Filter>Class headers</Filter>

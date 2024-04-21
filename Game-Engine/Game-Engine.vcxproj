@@ -21,10 +21,10 @@
   <ItemGroup>
     <ClCompile Include="CoreEngine.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Namespaces.ns.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="TestScene.cpp" />
-    <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +35,6 @@
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneManager.hpp" />
-    <ClInclude Include="TestScene.hpp" />
     <ClInclude Include="ThreadPool.hpp" />
     <ClInclude Include="Time.hpp" />
     <ClInclude Include="Window.hpp" />
@@ -134,6 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

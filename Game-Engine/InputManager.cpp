@@ -1,22 +1,21 @@
 #include "InputManager.hpp"
 
 namespace GobletOfFire {
-  using namespace Physics;
   namespace Input {
-    InputManager::InputManager(std::shared_ptr<Graphics::Window> window_ptr)
+    InputManager::InputManager(const std::shared_ptr<Graphics::Window>& window_ptr)
       : focus_(true), 
         leftMouseButton_(false), rightMouseButton_(false), mousePoint_(-1, -1),
       key_status_(std::move(std::vector<keyMap>(2))), active_(0),
       window_ptr_(window_ptr) {}
 
+    void InputManager::init(std::shared_ptr<Graphics::Window> window) {
+        auto instance = std::make_shared<InputManager>((window));
+        instance_= instance;
+    }
+
     std::shared_ptr<Input::InputManager> InputManager::getInstance() {
-      //if the `instance_` is `nullptr`, make one
-      if (!instance_.load()) {
-        auto instance = std::make_shared<InputManager>();
-        instance_.store(instance);
-      }
       //load the instance and return
-      return instance_.load();
+      return instance_.lock();
     }
 
     void InputManager::update() {
@@ -65,8 +64,8 @@ namespace GobletOfFire {
 
       // Check if the mouse is inside the window
       bool insideWindow = (
-        mousePosition.x >= 0 && mousePosition.x < window.getSize().x &&
-        mousePosition.y >= 0 && mousePosition.y < window.getSize().y);
+        (mousePosition.x >= 0) && (mousePosition.x < window.getSize().x) &&
+        (mousePosition.y >= 0) && (mousePosition.y < window.getSize().y));
 
       //if inside, move the pointer, else reset the coordinates
       mousePoint_ = insideWindow ?
