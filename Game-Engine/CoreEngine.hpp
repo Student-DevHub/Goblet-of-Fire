@@ -29,20 +29,18 @@ namespace GobletOfFire {
 
       void init();
       void run();
-      bool shouldStop() const;
-      void stop();
 
     private:
       CoreEngine();
       void calculateSuitableFPS();
 
-      void processInputPoll();
+      void pollEvents();
       void displayWindow();
+      void wait(const Utilities::Time::timePoint&) const;
 
       std::shared_ptr<Core::SceneManager> scene_manager_;
-      std::unique_ptr<Core::ThreadPool> engine_thread_pool_;
-      std::shared_ptr<Graphics::Window> main_window_;
-      std::mutex window_creation_;
+      std::shared_ptr<Input::InputManager> input_handler_;
+      std::shared_ptr<Graphics::window> main_window_;
 
       uint32_t target_frame_rate_;
       Utilities::Time::duration frame_duration_;

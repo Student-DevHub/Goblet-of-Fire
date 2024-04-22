@@ -19,7 +19,7 @@ namespace GobletOfFire {
       virtual void updateLogic() = 0;
       virtual void updateRender() = 0;
 
-      inline virtual std::shared_ptr<sf::RenderTexture> getBuffer() const = 0;
+      virtual std::shared_ptr<sf::RenderTexture> getBuffer() const = 0;
     };
   }
 }

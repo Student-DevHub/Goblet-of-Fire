@@ -25,7 +25,6 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.hpp" />
@@ -40,10 +39,8 @@
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="Scenes.hpp" />
     <ClInclude Include="TestScene.hpp" />
-    <ClInclude Include="ThreadPool.hpp" />
     <ClInclude Include="Time.hpp" />
     <ClInclude Include="Utilities.hpp" />
-    <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -48,7 +48,7 @@ namespace GobletOfFire {
         renderTexture->display();
       }
 
-      inline std::shared_ptr<sf::RenderTexture> getBuffer() const override {
+      std::shared_ptr<sf::RenderTexture> getBuffer() const override {
         return renderTexture;
       }
 

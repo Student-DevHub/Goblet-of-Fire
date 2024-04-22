@@ -3,8 +3,6 @@
 #define INPUT_MANAGER_HPP
 
 #include <memory>
-#include <unordered_map>
-#include <mutex>
 #include <cstdint>
 
 #include <SFML/Window.hpp>
@@ -16,43 +14,50 @@ namespace GobletOfFire {
     class InputManager {
     public:
       enum class Key {
-        kW, kA, kS, kD,
+        kW = 1, kA, kS, kD,
         kUp, kDown, kLeft, kRight
       };
 
-      static std::shared_ptr<Input::InputManager> getInstance();
+      enum class MouseButton {
+        kRight = static_cast<std::uint64_t>(Key::kRight) + 1, 
+        kLeft
+      };
 
-      void addWindow(std::shared_ptr<Graphics::Window> window);
+      InputManager(std::shared_ptr<Graphics::window>);
+
       void update();
 
-      bool isKeyPressed(Key);
-      bool isKeyReleased(Key);
-      bool isKeyUp(Key);
-      bool isKeyDown(Key);
+      bool isKeyPressed(Key) const;
+      bool isKeyReleased(Key) const;
+      bool isKeyHold(Key) const;
 
-      bool leftMouseButton() const;
-      bool rightMouseButton() const;
+      bool buttonPressed(MouseButton) const;
+      bool buttonReleased(MouseButton) const;
+      bool buttonHold(MouseButton) const;
+
       Physics::point2<int32_t> getMousePoint() const;
 
       void setFocus(bool);
       bool getFocus() const;
 
     private:
+      using mouse = sf::Mouse;
+      using keyboard = sf::Keyboard;
+
       void updateKeyboard();
       void updateMouse();
       void updateMousePointer();
       void clear();
 
-      InputManager();
+      void mapBit(std::uint32_t map, bool status);
+      bool checkBit(std::uint64_t map, std::uint64_t mask) const;
 
-      std::shared_ptr<Graphics::Window> window_ptr_; 
-      std::atomic<bool> focus_;
+      std::uint64_t prev_map_;
+      std::uint64_t curr_map_;
 
-      using keyMap = std::unordered_map<Key, bool>;
-      std::vector<keyMap> key_status_;
-      std::uint32_t active_ : 1; 
+      std::shared_ptr<Graphics::window> window_ptr_; 
+      std::atomic<bool> focus_; 
 
-      bool l_mouse_, r_mouse_; 
       Physics::point2<int32_t> mouse_position_;
     };
   }

@@ -63,9 +63,6 @@
     <ClInclude Include="ObjectManager.hpp">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadPool.hpp">
-      <Filter>Class headers</Filter>
-    </ClInclude>
     <ClInclude Include="Core.hpp">
       <Filter>Custom Libraries</Filter>
     </ClInclude>

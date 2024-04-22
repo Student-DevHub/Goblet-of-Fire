@@ -7,7 +7,6 @@ namespace GobletOfFire {
     //classes in this namespace
     class CoreEngine;
     class SceneManager;
-    class ThreadPool;
 
     //namespace variables
   }
@@ -15,6 +14,5 @@ namespace GobletOfFire {
 
 #include "CoreEngine.hpp"
 #include "SceneManager.hpp"
-#include "ThreadPool.hpp"
 
 #endif // !CORE_HPP

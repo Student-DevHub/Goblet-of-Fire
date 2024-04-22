@@ -3,64 +3,39 @@
 
 namespace GobletOfFire {
   namespace Core {
-    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine)
+    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine, const std::shared_ptr<Input::InputManager>& input_handler)
+      
       : current_scene_(Scene::kNone), main_engine_(main_engine),
-        active_buffer_(nullptr), render_status_(true), logic_status_(false) {
-      auto scene = std::make_pair<Scene, std::shared_ptr<Scenes::Scene>>(Scene::kTest, std::make_shared<Scenes::MyScene>());
+        active_buffer_(nullptr), input_handler_(input_handler) {
+      
+      auto test_scene = std::make_shared<Scenes::MyScene>();
+      auto scene = std::make_pair<Scene, std::shared_ptr<Scenes::Scene>>(Scene::kTest, test_scene);
       addNewScene(scene);
       switchTo(scene.first);
+
     }
 
-    void SceneManager::logicLoop() {
-
-      while(!main_engine_->shouldStop()) { 
-        std::unique_lock<std::mutex> lock(update_mut_); 
-        update_cv_.wait(lock, [this] { return render_status_.load(); }); 
-
-        render_status_.store(false); 
-        if(current_scene_ != Scene::kNone) {
-          scenes_[current_scene_]->updateLogic();
-        }
-        logic_status_.store(true); 
-
-        update_cv_.notify_one(); 
+    void SceneManager::update() {
+      if (current_scene_ != Scene::kNone) {
+        auto& curr = scenes_[current_scene_];
+        curr->updateLogic();
+        curr->updateRender();
+        this->updateActiveBuffer();
       }
-      
-    }
-
-    void SceneManager::renderLoop() {
-
-      while (!main_engine_->shouldStop()) {
-        std::unique_lock<std::mutex> lock(update_mut_);
-        update_cv_.wait(lock, [this] { return logic_status_.load(); });
-
-        logic_status_.store(false); 
-        if(current_scene_ != Scene::kNone) {
-          scenes_[current_scene_]->updateRender();
-        }
-        render_status_.store(true);
-
-        update_cv_.notify_one();
-        updateActiveBuffer();
-      }
-
     }
 
     std::shared_ptr<sf::RenderTexture> SceneManager::getActiveBuffer() const {
-      std::unique_lock<std::mutex> lock(update_buffer_mut_);
       return active_buffer_;
     }
 
     void SceneManager::updateActiveBuffer() {
-      std::unique_lock<std::mutex> lock(update_buffer_mut_);
-
       if (current_scene_ != Scene::kNone) {
         active_buffer_ = scenes_[current_scene_]->getBuffer();
       }
     }
 
     void SceneManager::addNewScene(const std::pair<Scene, std::shared_ptr<Scenes::Scene>> &scene) {
-      auto it = scenes_.insert(std::move(scene));
+      auto it = scenes_.insert(scene);
       if (it.second) {
         it.first->second->create();
       }
