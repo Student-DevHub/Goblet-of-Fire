@@ -21,7 +21,6 @@ namespace GobletOfFire {
 
     class CoreEngine : public std::enable_shared_from_this<Core::CoreEngine> {
     public:
-      
       static std::shared_ptr<CoreEngine> getInstance();
 
       CoreEngine(const CoreEngine&) = delete;

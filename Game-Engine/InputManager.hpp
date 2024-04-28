@@ -8,13 +8,14 @@
 #include <SFML/Window.hpp>
 
 #include "Graphics.hpp"
+#include "Physics.hpp"
 
 namespace GobletOfFire {
   namespace Input {
     class InputManager {
     public:
       enum class Key {
-        kW = 1, kA, kS, kD,
+        kW = 0, kA, kS, kD,
         kUp, kDown, kLeft, kRight
       };
 
@@ -35,7 +36,7 @@ namespace GobletOfFire {
       bool buttonReleased(MouseButton) const;
       bool buttonHold(MouseButton) const;
 
-      Physics::point2<int32_t> getMousePoint() const;
+      Physics::point2<std::int32_t> getMousePoint() const;
 
       void setFocus(bool);
       bool getFocus() const;
@@ -49,7 +50,7 @@ namespace GobletOfFire {
       void updateMousePointer();
       void clear();
 
-      void mapBit(std::uint32_t map, bool status);
+      void mapBit(std::uint32_t pos, bool status);
       bool checkBit(std::uint64_t map, std::uint64_t mask) const;
 
       std::uint64_t prev_map_;

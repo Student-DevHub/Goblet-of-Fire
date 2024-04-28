@@ -37,8 +37,6 @@ namespace GobletOfFire {
     void CoreEngine::run() {
 
       while (main_window_->isOpen()) {
-        auto start_time = Utilities::Time::clock::now();
-          
         this->displayWindow();
         input_handler_->update();
         scene_manager_->update();

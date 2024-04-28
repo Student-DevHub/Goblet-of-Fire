@@ -47,8 +47,6 @@ namespace GobletOfFire {
       if (it == scenes_.end() || it->first == current_scene_) {
         throw std::logic_error("Scene either does not exist or is the current scene");
       }
-
-      std::unique_lock<std::mutex> scene_change_;
       if (current_scene_ != Scene::kNone) {
         scenes_[current_scene_]->deactivate();
       }

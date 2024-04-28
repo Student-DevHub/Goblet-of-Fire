@@ -9,9 +9,9 @@ namespace GobletOfFire {
     
     void InputManager::update() {
       prev_map_ = curr_map_;
-      curr_map_ = 0;
+      clear();
 
-      if (focus_.load()) {
+      if (getFocus()) {
         updateKeyboard();
         updateMouse();
       }
@@ -74,20 +74,19 @@ namespace GobletOfFire {
     }
 
     void InputManager::updateKeyboard() {
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::W) ? static_cast<uint64_t>(Key::kW) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::A) ? static_cast<uint64_t>(Key::kA) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::S) ? static_cast<uint64_t>(Key::kS) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::D) ? static_cast<uint64_t>(Key::kD) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::Up) ? static_cast<uint64_t>(Key::kUp) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::Down) ? static_cast<uint64_t>(Key::kDown) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::Left) ? static_cast<uint64_t>(Key::kLeft) : 0;
-      curr_map_ |= keyboard::isKeyPressed(sf::Keyboard::Right) ? static_cast<uint64_t>(Key::kRight) : 0;
+      mapBit(static_cast<uint32_t>(Key::kW), keyboard::isKeyPressed(sf::Keyboard::W));
+      mapBit(static_cast<uint32_t>(Key::kA), keyboard::isKeyPressed(sf::Keyboard::A));
+      mapBit(static_cast<uint32_t>(Key::kS), keyboard::isKeyPressed(sf::Keyboard::S));
+      mapBit(static_cast<uint32_t>(Key::kD), keyboard::isKeyPressed(sf::Keyboard::D));
+      mapBit(static_cast<uint32_t>(Key::kUp), keyboard::isKeyPressed(sf::Keyboard::Up));
+      mapBit(static_cast<uint32_t>(Key::kDown), keyboard::isKeyPressed(sf::Keyboard::Down));
+      mapBit(static_cast<uint32_t>(Key::kLeft), keyboard::isKeyPressed(sf::Keyboard::Left));
+      mapBit(static_cast<uint32_t>(Key::kRight), keyboard::isKeyPressed(sf::Keyboard::Right));
     }
 
     void InputManager::updateMouse() {
-      curr_map_ |= mouse::isButtonPressed(sf::Mouse::Left) ? static_cast<uint64_t>(MouseButton::kLeft) : 0;
-
-      curr_map_ |= mouse::isButtonPressed(sf::Mouse::Right) ? static_cast<uint64_t>(MouseButton::kRight) : 0;
+      mapBit(static_cast<uint32_t>(MouseButton::kLeft), mouse::isButtonPressed(sf::Mouse::Left));
+      mapBit(static_cast<uint32_t>(MouseButton::kRight), mouse::isButtonPressed(sf::Mouse::Right));
     }
 
     void InputManager::updateMousePointer() {
@@ -106,18 +105,19 @@ namespace GobletOfFire {
       curr_map_ = 0;
     }
 
-    void InputManager::mapBit(std::uint32_t map, bool status) {
-      if (status) {
-        curr_map_ |= map;
-      }
-      else {
-        curr_map_ &= ~map;
-      }
+    void InputManager::mapBit(std::uint32_t pos, bool status) {
+      std::uint64_t map = 1;
+
+      if (status)
+        map = map << pos;
+      else
+        map = 0;
+
+      curr_map_ |= map;
     }
 
     bool InputManager::checkBit(std::uint64_t map, std::uint64_t mask) const {
       return (map & mask) != 0;
     }
-
   }
 }
