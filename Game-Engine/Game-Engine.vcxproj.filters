@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{0180b538-06a4-4133-b832-cd511c6e5bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{374c18ed-ce04-413f-a5ae-a2792509d8e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Class headers">
+      <UniqueIdentifier>{0a68254c-e0b7-4d08-b3ff-7a6f2cb2ccf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{13557465-4899-4c22-9495-2cb277ba19e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom Libraries">
+      <UniqueIdentifier>{3fcf26b8-9fa7-4e67-85fd-ba0c1ce598dd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CoreEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreEngine.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.hpp" />
+  </ItemGroup>
+</Project>
