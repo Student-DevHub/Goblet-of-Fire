@@ -14,5 +14,6 @@ namespace GobletOfFire {
 
 #include "CoreEngine.hpp"
 #include "SceneManager.hpp"
+#include "ResourceManager.hpp"
 
 #endif // !CORE_HPP

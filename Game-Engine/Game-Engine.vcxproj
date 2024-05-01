@@ -27,11 +27,13 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.hpp" />
     <ClInclude Include="Core.hpp" />
     <ClInclude Include="CoreEngine.hpp" />
     <ClInclude Include="Graphics.hpp" />
     <ClInclude Include="Input.hpp" />
     <ClInclude Include="InputManager.hpp" />
+    <ClInclude Include="Object.hpp" />
     <ClInclude Include="ObjectManager.hpp" />
     <ClInclude Include="Physics.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
