@@ -7,6 +7,7 @@ namespace GobletOfFire {
     //classes in this namespace
     class CoreEngine;
     class SceneManager;
+    struct ResourcePath;
 
     //namespace variables
   }

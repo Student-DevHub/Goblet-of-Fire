@@ -17,6 +17,6 @@ namespace GobletOfFire {
     using texture = sf::Texture;
     using sprite = sf::Sprite;
   }
-}
+} 
 
 #endif // !GRAPHICS_HPP

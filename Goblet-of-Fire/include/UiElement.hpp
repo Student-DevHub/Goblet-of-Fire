@@ -30,13 +30,15 @@ public:
   virtual std::weak_ptr<Graphics::texture> getTexture();
   virtual void update() = 0;
 
+protected:
+  std::unique_ptr<Graphics::buffer> ui_buffer_;
+
 private:
   Physics::point2<double_t> position_;
   Physics::point2<double_t> size_;
   bool is_visible_;
   bool interactivity_;
 
-  std::unique_ptr<Graphics::buffer> ui_buffer_;
   std::shared_ptr<Input::InputManager> input_;
 };
 

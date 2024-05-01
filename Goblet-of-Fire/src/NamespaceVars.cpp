@@ -7,4 +7,4 @@
 
 namespace gof = GobletOfFire;
 
-gof::Physics::point2<uint32_t> gof::Physics::window_dimensions(1280, 720);
+gof::Physics::point2<uint32_t> gof::Physics::window_dimensions_(1280, 720);

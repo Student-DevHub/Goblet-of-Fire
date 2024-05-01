@@ -2,63 +2,79 @@
 #ifndef RESOURCE_MANAGER_HPP
 #define RESOURCE_MANAGER_HPP
 
-#include <unordered_map>
+#include <map>
+#include <utility>
 #include <string>
 #include <memory>
 #include <cstdint>
 #include <algorithm>
-#include <atomic>
+#include <stdexcept>
+
+#include <Design_patterns.hpp>
 
 namespace GobletOfFire {
   namespace Core {
+    struct ResourcePath {
+      static std::string resources_directory_;
+      static std::map<uint64_t, std::string> paths_;
+    };
 
     template<typename T>
-    class ResourceManager {
+    class ResourceManager : public DesignPatterns::Singleton<ResourceManager<T>> {
     public:
-      ResourceManager() : current_id_(0) {}
+      friend class DesignPatterns::Singleton<ResourceManager<T>>;
 
-      std::int64_t add(const std::string& path) {
-        auto it = resource_map_.find(path);
-
-        if (it != resource_map_.end()) {
-          return it->second.first;
+      std::shared_ptr<T> load(uint64_t id) {
+        
+        auto ptr = get(id);
+        if (ptr) {
+          return ptr;
         }
 
-        std::shared_ptr<T> r = std::make_shared<T>();
-        if (!r->loadFromFile(path)) {
-          return -1;
+        auto it = ResourcePath::paths_.find(id);
+        if (it == ResourcePath::paths_.end()) {
+          throw std::runtime_error("The resource id" + std::to_string(id) + " is not mapped!");
         }
 
-        resource_map_.emplace(path, std::make_pair(current_id_.fetch_add(1), r));
+        ptr = std::make_shared<T>();
+        std::string path = ResourcePath::resources_directory_ + it->second;
+        if (!ptr->loadFromFile(path)) {
+          throw std::logic_error("The resource id" + std::to_string(id) + " has wrong path mapped!");
+        }
 
-        return current_id_.load();
+        this->resource_map_.emplace(std::make_pair(id, ptr));
+        return ptr;
       }
 
-      std::shared_ptr<T> get(std::int64_t id) const {
-        auto it = std::find_if(resource_map_.begin(), resource_map_.end(),
-          [&id](const auto& pair) {
-            return pair.second.first == id;
-          });
+      std::shared_ptr<T> get(uint64_t id) const {
+        auto it = resource_map_.find(id);
 
         if (it == resource_map_.end()) {
           return nullptr;
         }
 
-        return it->second.second;
+        return it->second;
       }
 
-      bool has(std::int64_t id) const {
-        auto it = std::find_if(resource_map_.begin(), resource_map_.end(),
-          [&id](const auto& pair) {
-            return pair.second.first == id;
-          });
+      bool has(uint64_t id) const {
+        auto ptr = get(id);
 
-        return it != resource_map_.end();
+        return ptr != nullptr;
       }
+
+      void remove(uint64_t id) {
+        if (!has(id))
+          return;
+        auto it = resource_map_.find(id);
+        resource_map_.erase(it);
+      }
+
+      virtual ~ResourceManager() {}
 
     private:
-      std::atomic<uint64_t> current_id_;
-      std::unordered_map<std::string, std::pair<uint64_t, std::shared_ptr<T>>> resource_map_;
+      ResourceManager() {}
+
+      std::map<uint64_t, std::shared_ptr<T>> resource_map_;
     };
   }
 }

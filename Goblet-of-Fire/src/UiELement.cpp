@@ -38,13 +38,16 @@ namespace GobletOfFire {
       const Physics::point2<double_t>& size, bool is_visible, bool interactivity,
       const std::shared_ptr<Input::InputManager>& i_manager)
       : position_(position), size_(size), is_visible_(is_visible), interactivity_(interactivity), 
-        input_(i_manager)
-    {
-      if (size.x < 1.0 || size.y < 1.0)
+        input_(i_manager) {
+      if (size.x < 1.0 || size.y < 1.0) {
         throw std::logic_error("Buffer size can't be lower than 1");
+      }
 
       ui_buffer_ = std::make_unique<Graphics::buffer>();
-      ui_buffer_->create(size.x, size.y); 
+      ui_buffer_->create(size.x, size.y);
     }
+
+    void 
+
   }
 }

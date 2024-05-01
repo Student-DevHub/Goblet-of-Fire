@@ -43,6 +43,9 @@
     <ClCompile Include="src\UiELement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Component.hpp">
@@ -98,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="include\UiElement.hpp">
       <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Singleton.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Design_patterns.hpp">
+      <Filter>Custom Libraries</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ namespace GobletOfFire {
     template<typename T>
     using point2 = sf::Vector2<T>; //custom name for vector2
 
-    extern point2<uint32_t> window_dimensions;
+    extern point2<uint32_t> window_dimensions_;
   }
 }
 
