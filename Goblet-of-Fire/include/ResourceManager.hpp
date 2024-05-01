@@ -57,8 +57,8 @@ namespace GobletOfFire {
       }
 
     private:
-      std::atomic<std::uint64_t> current_id_;
-      std::unordered_map<std::string, std::pair<std::uint64_t, std::shared_ptr<T>>> resource_map_;
+      std::atomic<uint64_t> current_id_;
+      std::unordered_map<std::string, std::pair<uint64_t, std::shared_ptr<T>>> resource_map_;
     };
   }
 }

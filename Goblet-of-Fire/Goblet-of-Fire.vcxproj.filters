@@ -22,81 +22,81 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CoreEngine.cpp">
+    <ClCompile Include="src\CoreEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
+    <ClCompile Include="src\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="src\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
+    <ClCompile Include="src\NamespaceVars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
+    <ClCompile Include="src\UiELement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.hpp">
-      <Filter>Class headers</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.hpp">
-      <Filter>Class headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.hpp">
+    <ClInclude Include="include\Component.hpp">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.hpp">
+    <ClInclude Include="include\Core.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CoreEngine.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Object.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputManager.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectManager.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene.hpp">
       <Filter>Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CoreEngine.hpp">
+    <ClInclude Include="include\Scenes.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utilities.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Ui_elements.hpp">
+      <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Time.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectManager.hpp">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Physics.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes.hpp">
-      <Filter>Custom Libraries</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.hpp">
+    <ClInclude Include="include\TestScene.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.hpp">
+    <ClInclude Include="include\SceneManager.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.hpp">
+    <ClInclude Include="include\ResourceManager.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
-    <ClInclude Include="Component.hpp">
-      <Filter>Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.hpp">
-      <Filter>Class headers</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.hpp">
+    <ClInclude Include="include\UiElement.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
   </ItemGroup>

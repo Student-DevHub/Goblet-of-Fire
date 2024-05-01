@@ -1,0 +1,10 @@
+#include <Core.hpp>
+#include <Input.hpp>
+#include <Graphics.hpp>
+#include <Scenes.hpp>
+#include <Utilities.hpp>
+#include <UiElement.hpp>
+
+namespace gof = GobletOfFire;
+
+gof::Physics::point2<uint32_t> gof::Physics::window_dimensions(1280, 720);

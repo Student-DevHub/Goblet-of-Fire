@@ -4,7 +4,7 @@ namespace GobletOfFire {
   namespace Input {
 
     InputManager::InputManager(std::shared_ptr<Graphics::window> window)
-      : prev_map_(std::uint64_t(0)), curr_map_(std::uint64_t(0)), window_ptr_(window), focus_
+      : prev_map_(uint64_t(0)), curr_map_(uint64_t(0)), window_ptr_(window), focus_
       (true), mouse_position_{ -1, -1 } {}
     
     void InputManager::update() {
@@ -21,42 +21,42 @@ namespace GobletOfFire {
 
     bool InputManager::isKeyPressed(Key key) const {
       auto pos = static_cast<uint64_t>(key);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(prev_map_, mask)) && checkBit(curr_map_, mask);
     }
 
     bool InputManager::isKeyReleased(Key key) const {
       auto pos = static_cast<uint64_t>(key);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(curr_map_, mask)) && checkBit(prev_map_, mask);
     }
 
     bool InputManager::isKeyHold(Key key) const {
       auto pos = static_cast<uint64_t>(key);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return checkBit(prev_map_, mask) && checkBit(curr_map_, mask);
     }
 
     bool InputManager::buttonPressed(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(prev_map_, mask)) && checkBit(curr_map_, mask);
     }
 
     bool InputManager::buttonReleased(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(curr_map_, mask)) && checkBit(prev_map_, mask);
     }
 
     bool InputManager::buttonHold(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
-      std::uint64_t mask = static_cast<uint64_t>(1) << pos;
+      uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return checkBit(prev_map_, mask) && checkBit(curr_map_, mask);
     }
@@ -105,8 +105,8 @@ namespace GobletOfFire {
       curr_map_ = 0;
     }
 
-    void InputManager::mapBit(std::uint32_t pos, bool status) {
-      std::uint64_t map = 1;
+    void InputManager::mapBit(uint32_t pos, bool status) {
+      uint64_t map = 1;
 
       if (status)
         map = map << pos;
@@ -116,7 +116,7 @@ namespace GobletOfFire {
       curr_map_ |= map;
     }
 
-    bool InputManager::checkBit(std::uint64_t map, std::uint64_t mask) const {
+    bool InputManager::checkBit(uint64_t map, uint64_t mask) const {
       return (map & mask) != 0;
     }
   }

@@ -20,7 +20,7 @@ namespace GobletOfFire {
       };
 
       enum class MouseButton {
-        kRight = static_cast<std::uint64_t>(Key::kRight) + 1, 
+        kRight = static_cast<uint64_t>(Key::kRight) + 1, 
         kLeft
       };
 
@@ -36,7 +36,7 @@ namespace GobletOfFire {
       bool buttonReleased(MouseButton) const;
       bool buttonHold(MouseButton) const;
 
-      Physics::point2<std::int32_t> getMousePoint() const;
+      Physics::point2<int32_t> getMousePoint() const;
 
       void setFocus(bool);
       bool getFocus() const;
@@ -50,11 +50,11 @@ namespace GobletOfFire {
       void updateMousePointer();
       void clear();
 
-      void mapBit(std::uint32_t pos, bool status);
-      bool checkBit(std::uint64_t map, std::uint64_t mask) const;
+      void mapBit(uint32_t pos, bool status);
+      bool checkBit(uint64_t map, uint64_t mask) const;
 
-      std::uint64_t prev_map_;
-      std::uint64_t curr_map_;
+      uint64_t prev_map_;
+      uint64_t curr_map_;
 
       std::shared_ptr<Graphics::window> window_ptr_; 
       std::atomic<bool> focus_; 

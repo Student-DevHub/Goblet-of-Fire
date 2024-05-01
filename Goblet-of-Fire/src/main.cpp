@@ -1,4 +1,4 @@
-#include "Core.hpp"
+#include <Core.hpp>
 
 int main() {
   auto engine = GobletOfFire::Core::CoreEngine::getInstance();

@@ -14,6 +14,8 @@ namespace GobletOfFire {
     //aliases
     using window = sf::RenderWindow;
     using buffer = sf::RenderTexture;
+    using texture = sf::Texture;
+    using sprite = sf::Sprite;
   }
 }
 
