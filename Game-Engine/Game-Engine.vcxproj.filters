@@ -14,6 +14,9 @@
     <Filter Include="Class headers">
       <UniqueIdentifier>{0a68254c-e0b7-4d08-b3ff-7a6f2cb2ccf2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{13557465-4899-4c22-9495-2cb277ba19e3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Custom Libraries">
       <UniqueIdentifier>{3fcf26b8-9fa7-4e67-85fd-ba0c1ce598dd}</UniqueIdentifier>
     </Filter>
@@ -23,6 +26,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
@@ -39,10 +45,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Window.hpp">
+      <Filter>Class headers</Filter>
+    </ClInclude>
     <ClInclude Include="SceneManager.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
     <ClInclude Include="Scene.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.hpp">
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="CoreEngine.hpp">
