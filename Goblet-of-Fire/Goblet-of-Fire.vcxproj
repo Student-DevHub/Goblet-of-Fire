@@ -26,6 +26,7 @@
     <ClInclude Include="include\Graphics.hpp" />
     <ClInclude Include="include\Input.hpp" />
     <ClInclude Include="include\InputManager.hpp" />
+    <ClInclude Include="include\Label.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\ObjectManager.hpp" />
     <ClInclude Include="include\ObserverPattern.hpp" />

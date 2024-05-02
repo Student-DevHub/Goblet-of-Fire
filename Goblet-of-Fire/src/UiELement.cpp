@@ -56,7 +56,7 @@ namespace GobletOfFire {
       destination.draw(uiSprite);
     }
 
-    std::weak_ptr<Graphics::texture> UIElement::getTexture() {
+    std::weak_ptr<Graphics::texture> UIElement::getTexture() const {
       if (!ui_buffer_) {
         return std::weak_ptr<Graphics::texture>();
       }

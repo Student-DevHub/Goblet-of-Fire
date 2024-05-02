@@ -114,5 +114,8 @@
     <ClInclude Include="include\ObserverPattern.hpp">
       <Filter>Class headers</Filter>
     </ClInclude>
+    <ClInclude Include="include\Label.hpp">
+      <Filter>UI Elements</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

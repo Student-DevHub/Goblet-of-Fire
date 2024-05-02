@@ -16,6 +16,7 @@ namespace GobletOfFire {
     using buffer = sf::RenderTexture;
     using texture = sf::Texture;
     using sprite = sf::Sprite;
+    using color = sf::Color;
   }
 } 
 

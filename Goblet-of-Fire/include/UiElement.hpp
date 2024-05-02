@@ -29,12 +29,13 @@ public:
   bool getVisibility() const;
   bool getInteractivity() const;
 
-  virtual void render(Graphics::buffer&);
-  virtual std::weak_ptr<Graphics::texture> getTexture();
+  virtual void render(Graphics::buffer& destination);
+  virtual std::weak_ptr<Graphics::texture> getTexture() const;
   virtual void update() = 0;
 
 protected:
   std::unique_ptr<Graphics::buffer> ui_buffer_;
+  std::shared_ptr<Input::InputManager> input_;
 
 private:
   Physics::point2<double_t> position_;
@@ -42,7 +43,6 @@ private:
   bool is_visible_;
   bool interactivity_;
 
-  std::shared_ptr<Input::InputManager> input_;
 };
 
 #endif // !UI_ELEMENT_HPP
