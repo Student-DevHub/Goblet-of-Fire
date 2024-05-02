@@ -4,11 +4,15 @@
 
 namespace GobletOfFire {
   namespace DesignPatterns {
-    template <typename T>
+    template <class T>
     class Singleton;
+    template <class SubjectType>
+    class Observer;
+    template <class SubjectType>
+    class Subject;
   }
 }
-
 #include "Singleton.hpp"
+#include "ObserverPattern.hpp"
 
 #endif // !DESGIN_PATTERN_HPP

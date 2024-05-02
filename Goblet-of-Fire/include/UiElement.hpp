@@ -4,6 +4,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <stdexcept>
 
 #include <Ui_Elements.hpp>
 #include <Graphics.hpp>
@@ -13,8 +14,10 @@
 class GobletOfFire::UI::UIElement {
 public:
   UIElement(const Physics::point2<double_t>&, 
-    const Physics::point2<double_t>&, bool, bool, 
-    const std::shared_ptr<Input::InputManager>&);
+    const Physics::point2<double_t>&, 
+    const std::shared_ptr<Input::InputManager>&, 
+    bool = true, bool = false 
+    );
 
   void setPosition(const Physics::point2<double_t>&);
   void setSize(const Physics::point2<double_t>&);

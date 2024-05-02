@@ -20,6 +20,9 @@
     <Filter Include="Custom Libraries">
       <UniqueIdentifier>{3fcf26b8-9fa7-4e67-85fd-ba0c1ce598dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI Elements">
+      <UniqueIdentifier>{d2f32159-a246-4268-b007-8681f80e0314}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreEngine.cpp">
@@ -107,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="include\Design_patterns.hpp">
       <Filter>Custom Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObserverPattern.hpp">
+      <Filter>Class headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

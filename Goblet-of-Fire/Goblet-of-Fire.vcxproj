@@ -28,6 +28,7 @@
     <ClInclude Include="include\InputManager.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\ObjectManager.hpp" />
+    <ClInclude Include="include\ObserverPattern.hpp" />
     <ClInclude Include="include\Physics.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />
     <ClInclude Include="include\Scene.hpp" />

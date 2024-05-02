@@ -7,13 +7,12 @@ namespace GobletOfFire {
     class UIElement;
     
     class Button;
-    class TextButton;
-    class IconButton;
+    class Label;
+    class Icon;
+    class TextEntry;
+    class ProgressBar;
 
-    class Box;
     class ContainerBox;
-    class EntryBox;
-    class LabelBox;
 
     class ProgressBar;
   }
