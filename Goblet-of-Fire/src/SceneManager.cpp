@@ -8,8 +8,8 @@ namespace GobletOfFire {
       : current_scene_(Scene::kNone), main_engine_(main_engine),
         active_buffer_(nullptr), input_handler_(input_handler) {
       
-      auto test_scene = std::make_shared<Scenes::MyScene>();
-      auto scene = std::make_pair<Scene, std::shared_ptr<Scenes::Scene>>(Scene::kTest, test_scene);
+      auto test_scene = std::make_shared<Scene::MyScene>();
+      auto scene = std::make_pair<Scene, std::shared_ptr<Scene::Scene>>(Scene::kTest, test_scene);
       addNewScene(scene);
       switchTo(scene.first);
 
@@ -34,7 +34,7 @@ namespace GobletOfFire {
       }
     }
 
-    void SceneManager::addNewScene(const std::pair<Scene, std::shared_ptr<Scenes::Scene>> &scene) {
+    void SceneManager::addNewScene(const std::pair<Scene, std::shared_ptr<Scene::Scene>> &scene) {
       auto it = scenes_.insert(scene);
       if (it.second) {
         it.first->second->create();

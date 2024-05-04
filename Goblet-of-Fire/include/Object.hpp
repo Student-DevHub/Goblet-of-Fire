@@ -2,16 +2,19 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
-#include <memory>
 #include <atomic>
 #include <cstdint>
+#include <memory>
+#include <unordered_map>
+#include <utility>
+#include <algorithm>
 
 #include "Utilities.hpp"
 #include "Graphics.hpp"
-#include "Scenes.hpp"
+#include "ObjectComponents.hpp"
 
 namespace GobletOfFire {
-  namespace Scenes {
+  namespace ObjectComponent {
     class Object {
     public:
       void create();
@@ -20,17 +23,20 @@ namespace GobletOfFire {
       void activate();
       void deActivate();
 
-      void update(const Component::Type, const Utilities::Time::duration);
-      void render(std::shared_ptr<Graphics::buffer>);
+      void update(const iComponent::Type, const Utilities::Time::duration) const;
+      void render(Graphics::buffer&) const;
 
-      void addComponent(const Component::Type, std::shared_ptr<Component> component);
-      void removeComponent(const Component::Type);
-      std::shared_ptr<Component> getComponent(const Component::Type);
+      void addComponent(const iComponent::Type, const std::shared_ptr<iComponent>&);
+      void removeComponent(const iComponent::Type);
+      std::shared_ptr<iComponent> getComponent(const iComponent::Type) const;
 
-      bool getDestroyed() const;
+      bool isDestroyed() const;
 
     private:
-      std::unordered_map<Component::Type, std::shared_ptr<Component>> components_;
+      using iterator = std::unordered_map<iComponent::Type, std::shared_ptr<iComponent>>::const_iterator;
+      iterator getComponent_i(iComponent::Type) const;
+
+      std::unordered_map<iComponent::Type, std::shared_ptr<iComponent>> components_;
       std::atomic<bool> destroyed_;
     };
   }

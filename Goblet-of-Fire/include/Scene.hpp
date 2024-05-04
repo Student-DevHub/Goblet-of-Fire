@@ -1,27 +1,16 @@
 #pragma once
-#ifndef SCENE_HPP
-#define SCENE_HPP
-
-#include <memory>
-
-#include <SFML/Graphics.hpp>
+#ifndef SCENES_HP
+#define SCENES_HP
 
 namespace GobletOfFire {
-  namespace Scenes {
-    class Scene : public std::enable_shared_from_this<Scenes::Scene> {
-    public:
-      virtual void create() = 0;
-      virtual void destroy() = 0;
+  namespace Scene {
+    //classes in this namespace
+    class iScene;
 
-      virtual void activate() = 0;
-      virtual void deactivate() = 0;
-
-      virtual void updateLogic() = 0;
-      virtual void updateRender() = 0;
-
-      virtual std::shared_ptr<sf::RenderTexture> getBuffer() const = 0;
-    };
+    //namespace variables
   }
 }
 
-#endif /* SCENE_HPP */
+#include "iScene.hpp"
+
+#endif // !SCENES_HP

@@ -4,11 +4,12 @@
 
 #include "Utilities.hpp"
 #include "Graphics.hpp"
-#include "Scenes.hpp"
+#include "Scene.hpp"
 
 namespace GobletOfFire {
-  namespace Scenes {
-    class Component {
+  namespace ObjectComponent {
+
+    class iComponent {
     public:
       enum class Type {
         kTransform,
@@ -16,7 +17,9 @@ namespace GobletOfFire {
         kSprite,
         kRender,
         kAnimation,
-        kCollision
+        kCollision,
+        kAttack,
+        kHealth
       };
 
       virtual void create() = 0;
@@ -25,9 +28,10 @@ namespace GobletOfFire {
       virtual void activate() = 0;
       virtual void deActivate() = 0;
 
-      virtual void update(const Utilities::Time::duration) = 0;
-      virtual void render(std::shared_ptr<Graphics::buffer>) = 0;
+      virtual void update(const Utilities::Time::duration) = 0; //duration is in milliseconds
+      virtual void render(Graphics::buffer&) = 0;
     };
+
   }
 }
 #endif // !COMPONENT_HPP

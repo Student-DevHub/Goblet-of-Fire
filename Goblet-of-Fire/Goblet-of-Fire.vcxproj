@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Component.hpp" />
+    <ClInclude Include="include\iComponent.hpp" />
     <ClInclude Include="include\Core.hpp" />
     <ClInclude Include="include\CoreEngine.hpp" />
     <ClInclude Include="include\Design_patterns.hpp" />
@@ -28,13 +28,14 @@
     <ClInclude Include="include\InputManager.hpp" />
     <ClInclude Include="include\Label.hpp" />
     <ClInclude Include="include\Object.hpp" />
-    <ClInclude Include="include\ObjectManager.hpp" />
+    <ClInclude Include="include\ObjectCollection.hpp" />
+    <ClInclude Include="include\ObjectComponents.hpp" />
     <ClInclude Include="include\ObserverPattern.hpp" />
     <ClInclude Include="include\Physics.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />
-    <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\iScene.hpp" />
     <ClInclude Include="include\SceneManager.hpp" />
-    <ClInclude Include="include\Scenes.hpp" />
+    <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\Singleton.hpp" />
     <ClInclude Include="include\TestScene.hpp" />
     <ClInclude Include="include\Time.hpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\NamespaceVars.cpp" />
+    <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\TestScene.cpp" />

@@ -10,14 +10,6 @@
 #include <Ui_elements.hpp>
 #include <Design_patterns.hpp>
 
-/*
-UIElement(const Physics::point2<double_t>&,
-    const Physics::point2<double_t>&,
-    const std::shared_ptr<Input::InputManager>&,
-    bool = true, bool = false
-    );
-*/
-
 namespace GobletOfFire {
   namespace UI {
     

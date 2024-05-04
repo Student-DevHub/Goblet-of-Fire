@@ -4,11 +4,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Scenes.hpp"
+#include <Scene.hpp>
 
 namespace GobletOfFire {
-  namespace Scenes {
-    class MyScene : public Scene {
+  namespace Scene {
+    class MyScene : public iScene {
     public:
       MyScene() : renderTexture(std::make_shared<sf::RenderTexture>()) {}
 
