@@ -10,7 +10,7 @@
 
 #include "Core.hpp"
 #include <Scene.hpp>
-#include "Input.hpp"
+#include <Input.hpp>
 
 namespace GobletOfFire {
   namespace Core {
@@ -41,14 +41,16 @@ namespace GobletOfFire {
       void remove(SceneManager::Scenes);
 
     private:
+
+
       std::shared_ptr<Core::CoreEngine> main_engine_;
       std::shared_ptr<Input::InputManager> input_handler_;
 
       std::unordered_map<
-        SceneManager::Scene,
+        SceneManager::Scenes,
         std::shared_ptr<Scene::iScene>> scenes_;  
 
-      SceneManager::Scene current_scene_;
+      SceneManager::Scenes current_scene_;
 
       std::shared_ptr <Graphics::buffer> active_buffer_;
     };

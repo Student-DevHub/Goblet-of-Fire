@@ -4,12 +4,14 @@
 
 #include <memory>
 
-#include <SFML/Graphics.hpp>
+#include <Graphics.hpp>
 
 namespace GobletOfFire {
   namespace Scene {
     class iScene : public std::enable_shared_from_this<iScene> {
     public:
+      virtual ~iScene() {}
+
       virtual void create() = 0;
       virtual void destroy() = 0;
 
@@ -19,7 +21,7 @@ namespace GobletOfFire {
       virtual void updateLogic() = 0;
       virtual void updateRender() = 0;
 
-      virtual std::shared_ptr<sf::RenderTexture> getBuffer() const = 0;
+      virtual std::shared_ptr<Graphics::buffer> getBuffer() const = 0;
     };
   }
 }

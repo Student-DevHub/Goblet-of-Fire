@@ -74,19 +74,19 @@ namespace GobletOfFire {
     }
 
     void InputManager::updateKeyboard() {
-      mapBit(static_cast<uint32_t>(Key::kW), keyboard::isKeyPressed(sf::Keyboard::W));
-      mapBit(static_cast<uint32_t>(Key::kA), keyboard::isKeyPressed(sf::Keyboard::A));
-      mapBit(static_cast<uint32_t>(Key::kS), keyboard::isKeyPressed(sf::Keyboard::S));
-      mapBit(static_cast<uint32_t>(Key::kD), keyboard::isKeyPressed(sf::Keyboard::D));
-      mapBit(static_cast<uint32_t>(Key::kUp), keyboard::isKeyPressed(sf::Keyboard::Up));
-      mapBit(static_cast<uint32_t>(Key::kDown), keyboard::isKeyPressed(sf::Keyboard::Down));
-      mapBit(static_cast<uint32_t>(Key::kLeft), keyboard::isKeyPressed(sf::Keyboard::Left));
-      mapBit(static_cast<uint32_t>(Key::kRight), keyboard::isKeyPressed(sf::Keyboard::Right));
+      mapBit(static_cast<uint32_t>(Key::kW), keyboard::isKeyPressed(keyboard::W));
+      mapBit(static_cast<uint32_t>(Key::kA), keyboard::isKeyPressed(keyboard::A));
+      mapBit(static_cast<uint32_t>(Key::kS), keyboard::isKeyPressed(keyboard::S));
+      mapBit(static_cast<uint32_t>(Key::kD), keyboard::isKeyPressed(keyboard::D));
+      mapBit(static_cast<uint32_t>(Key::kUp), keyboard::isKeyPressed(keyboard::Up));
+      mapBit(static_cast<uint32_t>(Key::kDown), keyboard::isKeyPressed(keyboard::Down));
+      mapBit(static_cast<uint32_t>(Key::kLeft), keyboard::isKeyPressed(keyboard::Left));
+      mapBit(static_cast<uint32_t>(Key::kRight), keyboard::isKeyPressed(keyboard::Right));
     }
 
     void InputManager::updateMouse() {
-      mapBit(static_cast<uint32_t>(MouseButton::kLeft), mouse::isButtonPressed(sf::Mouse::Left));
-      mapBit(static_cast<uint32_t>(MouseButton::kRight), mouse::isButtonPressed(sf::Mouse::Right));
+      mapBit(static_cast<uint32_t>(MouseButton::kLeft), mouse::isButtonPressed(mouse::Left));
+      mapBit(static_cast<uint32_t>(MouseButton::kRight), mouse::isButtonPressed(mouse::Right));
     }
 
     void InputManager::updateMousePointer() {

@@ -26,7 +26,7 @@
     <ClInclude Include="include\Graphics.hpp" />
     <ClInclude Include="include\Input.hpp" />
     <ClInclude Include="include\InputManager.hpp" />
-    <ClInclude Include="include\Label.hpp" />
+    <ClInclude Include="include\MainMenu.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\ObjectCollection.hpp" />
     <ClInclude Include="include\ObjectComponents.hpp" />
@@ -39,14 +39,13 @@
     <ClInclude Include="include\Singleton.hpp" />
     <ClInclude Include="include\TestScene.hpp" />
     <ClInclude Include="include\Time.hpp" />
-    <ClInclude Include="include\UiElement.hpp" />
-    <ClInclude Include="include\Ui_elements.hpp" />
     <ClInclude Include="include\Utilities.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CoreEngine.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\NamespaceVars.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
