@@ -8,26 +8,26 @@
 #include <thread>
 #include <atomic>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-
-#include "Core.hpp"
-#include "Graphics.hpp"
-#include "Utilities.hpp"
-#include "Input.hpp"
+#include <Core.hpp>
+#include <Graphics.hpp>
+#include <Utilities.hpp>
+#include <Input.hpp>
+#include <Design_patterns.hpp>
 
 namespace GobletOfFire {
   namespace Core {
 
-    class CoreEngine : public std::enable_shared_from_this<Core::CoreEngine> {
+    class CoreEngine : public std::enable_shared_from_this<CoreEngine>, 
+      public DesignPatterns::Singleton<CoreEngine> {
     public:
-      static std::shared_ptr<CoreEngine> getInstance();
+      friend class DesignPatterns::Singleton<CoreEngine>;
 
       CoreEngine(const CoreEngine&) = delete;
       ~CoreEngine() {}
 
       void init();
       void run();
+      void stop();
 
     private:
       CoreEngine();
@@ -35,7 +35,6 @@ namespace GobletOfFire {
 
       void pollEvents();
       void displayWindow();
-      void wait(const Utilities::Time::timePoint&) const;
 
       std::shared_ptr<Core::SceneManager> scene_manager_;
       std::shared_ptr<Input::InputManager> input_handler_;

@@ -3,20 +3,20 @@
 
 namespace GobletOfFire {
   namespace Core {
-    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine, const std::shared_ptr<Input::InputManager>& input_handler)
-      
-      : current_scene_(Scene::kNone), main_engine_(main_engine),
+    SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine, 
+      const std::shared_ptr<Input::InputManager>& input_handler)  
+      : current_scene_(0), main_engine_(main_engine),
         active_buffer_(nullptr), input_handler_(input_handler) {
       
-      auto test_scene = std::make_shared<Scene::MyScene>();
-      auto scene = std::make_pair<Scene, std::shared_ptr<Scene::Scene>>(Scene::kTest, test_scene);
+      auto main_menu = std::make_shared<Scene::MainMenu>(input_handler_, main_engine_);
+      auto scene = std::make_pair(1, main_menu);
       addNewScene(scene);
       switchTo(scene.first);
 
     }
 
     void SceneManager::update() {
-      if (current_scene_ != Scene::kNone) {
+      if (current_scene_) {
         auto& curr = scenes_[current_scene_];
         curr->updateLogic();
         curr->updateRender();
@@ -29,25 +29,25 @@ namespace GobletOfFire {
     }
 
     void SceneManager::updateActiveBuffer() {
-      if (current_scene_ != Scene::kNone) {
+      if (current_scene_) {
         active_buffer_ = scenes_[current_scene_]->getBuffer();
       }
     }
 
-    void SceneManager::addNewScene(const std::pair<Scene, std::shared_ptr<Scene::Scene>> &scene) {
+    void SceneManager::addNewScene(const std::pair<uint32_t, std::shared_ptr<Scene::iScene>> &scene) {
       auto it = scenes_.insert(scene);
       if (it.second) {
         it.first->second->create();
       }
     }
 
-    void SceneManager::switchTo(SceneManager::Scene scene) {
-      auto it = scenes_.find(scene);
+    void SceneManager::switchTo(uint32_t id) {
+      auto it = scenes_.find(id);
 
       if (it == scenes_.end() || it->first == current_scene_) {
         throw std::logic_error("Scene either does not exist or is the current scene");
       }
-      if (current_scene_ != Scene::kNone) {
+      if (current_scene_) {
         scenes_[current_scene_]->deactivate();
       }
       it->second->activate();
@@ -55,8 +55,8 @@ namespace GobletOfFire {
       current_scene_ = it->first;
     }
 
-    void SceneManager::remove(SceneManager::Scene scene) {
-      auto it = scenes_.find(scene);
+    void SceneManager::remove(uint32_t id) {
+      auto it = scenes_.find(id);
 
       if (it == scenes_.end() || it->first == current_scene_) {
         throw std::logic_error("Scene either does not exist or is the current scene");

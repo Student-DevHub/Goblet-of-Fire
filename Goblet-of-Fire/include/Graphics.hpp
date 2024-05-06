@@ -7,11 +7,6 @@
 
 namespace GobletOfFire {
   namespace Graphics {
-    //classes in this namespace 
-
-    //namespace variables
-
-    //aliases
     using window = sf::RenderWindow;
     using buffer = sf::RenderTexture;
     using texture = sf::Texture;

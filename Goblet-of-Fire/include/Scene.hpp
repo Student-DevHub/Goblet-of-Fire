@@ -12,5 +12,7 @@ namespace GobletOfFire {
 }
 
 #include "iScene.hpp"
+#include "TestScene.hpp"
+#include "MainMenu.hpp"
 
 #endif // !SCENES_HP

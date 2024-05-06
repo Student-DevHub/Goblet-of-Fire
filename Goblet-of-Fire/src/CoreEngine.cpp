@@ -1,14 +1,7 @@
 #include "CoreEngine.hpp"
 
-#include <iostream>
-
-
 namespace GobletOfFire {
   namespace Core {
-    std::shared_ptr<CoreEngine> CoreEngine::getInstance() {
-      static std::shared_ptr<CoreEngine> instance(new CoreEngine);
-      return instance;
-    }
 
     CoreEngine::CoreEngine()
       : stop_(false), scene_manager_(nullptr),
@@ -36,12 +29,20 @@ namespace GobletOfFire {
 
     void CoreEngine::run() {
 
-      while (main_window_->isOpen()) {
+      while (main_window_->isOpen() && !stop_.load()) {
         this->displayWindow();
         input_handler_->update();
         scene_manager_->update();
         this->pollEvents();
       }
+
+      if (!stop_.load()) {
+        main_window_->close();
+      }
+    }
+
+    void CoreEngine::stop() {
+      stop_.store(true);
     }
 
     void CoreEngine::pollEvents() {
@@ -64,23 +65,11 @@ namespace GobletOfFire {
       auto ptr_texture = scene_manager_->getActiveBuffer();
 
       if (ptr_texture) {
-        sf::Sprite sprite_to_draw(ptr_texture->getTexture());
+        Graphics::sprite sprite_to_draw(ptr_texture->getTexture());
         main_window_->draw(sprite_to_draw);
       }
 
       main_window_->display();
-    }
-
-    void CoreEngine::wait(const Utilities::Time::timePoint& start_time) const {
-      auto time_elapsed = Utilities::Time::getTimeElapsed(start_time);
-      auto remaining_time = (frame_duration_ - time_elapsed) / 2;
-
-      if (remaining_time > Utilities::Time::duration(0)) {
-        std::this_thread::sleep_for(remaining_time);
-      }
-
-      time_elapsed = Utilities::Time::getTimeElapsed(start_time);
-      std::cout << "Time elapsed: " << time_elapsed.count() << std::endl;
     }
   }
 }

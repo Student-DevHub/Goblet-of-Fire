@@ -40,21 +40,21 @@ namespace GobletOfFire {
       return checkBit(prev_map_, mask) && checkBit(curr_map_, mask);
     }
 
-    bool InputManager::buttonPressed(MouseButton button) const {
+    bool InputManager::isbuttonPressed(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
       uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(prev_map_, mask)) && checkBit(curr_map_, mask);
     }
 
-    bool InputManager::buttonReleased(MouseButton button) const {
+    bool InputManager::isbuttonReleased(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
       uint64_t mask = static_cast<uint64_t>(1) << pos;
 
       return (!checkBit(curr_map_, mask)) && checkBit(prev_map_, mask);
     }
 
-    bool InputManager::buttonHold(MouseButton button) const {
+    bool InputManager::isbuttonHold(MouseButton button) const {
       auto pos = static_cast<uint64_t>(button);
       uint64_t mask = static_cast<uint64_t>(1) << pos;
 
@@ -82,6 +82,7 @@ namespace GobletOfFire {
       mapBit(static_cast<uint32_t>(Key::kDown), keyboard::isKeyPressed(keyboard::Down));
       mapBit(static_cast<uint32_t>(Key::kLeft), keyboard::isKeyPressed(keyboard::Left));
       mapBit(static_cast<uint32_t>(Key::kRight), keyboard::isKeyPressed(keyboard::Right));
+      mapBit(static_cast<uint32_t>(Key::kEnter), keyboard::isKeyPressed(keyboard::Enter));
     }
 
     void InputManager::updateMouse() {

@@ -6,12 +6,8 @@
 
 namespace GobletOfFire {
   namespace Input {
-    //classes in this namespace
     class InputManager;
 
-    //namespace variables
-
-    //aliases
     using inputEvent = sf::Event;
   }
 }

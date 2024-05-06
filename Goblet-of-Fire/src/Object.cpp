@@ -2,8 +2,6 @@
 
 namespace GobletOfFire {
   namespace ObjectComponent {
-    Object::Object() {}
-
     void Object::create() {
       auto create_components = [](const std::pair<iComponent::Type, std::shared_ptr<iComponent>>& pair) {
                           pair.second->create();
