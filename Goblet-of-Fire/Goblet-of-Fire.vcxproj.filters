@@ -5,35 +5,26 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{0a68254c-e0b7-4d08-b3ff-7a6f2cb2ccf2}</UniqueIdentifier>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{f028f9f7-1d75-459a-b1ce-db4ad518b119}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Design Pattern">
-      <UniqueIdentifier>{97779e50-e10f-4652-967f-c766d7fff877}</UniqueIdentifier>
+    <Filter Include="Include">
+      <UniqueIdentifier>{5873bd8f-75cc-43ca-b92c-9a4c17250db4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Core">
-      <UniqueIdentifier>{752a18c3-7648-47c8-8cca-b8597dcaeb88}</UniqueIdentifier>
+    <Filter Include="Design Patterns">
+      <UniqueIdentifier>{2ff55b84-6ff1-4c51-82cb-68650b1d4462}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{cd2a9c79-1cda-4d18-b452-05151a3b5d7e}</UniqueIdentifier>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{1395e787-d3a1-4cfc-84a1-38f817beed8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Scene">
-      <UniqueIdentifier>{3fb59722-af4c-4295-b516-c9658f11bd27}</UniqueIdentifier>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{963bfb94-9d9f-4fb8-ad91-b5d8c5c86e4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{5d1730de-6e26-453e-a3c4-254b67a5decc}</UniqueIdentifier>
+    <Filter Include="Scenes\Resources">
+      <UniqueIdentifier>{76320ec8-b9ee-47c1-80a3-c04509324137}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Physics">
-      <UniqueIdentifier>{252481b8-b1a0-4a50-97fb-654f88423a26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{16bed99c-be89-4b93-b2c3-3ce13e110b70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utilities">
-      <UniqueIdentifier>{4e962a82-4a78-4be0-ac7d-3c58357da935}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ObjectComponents">
-      <UniqueIdentifier>{d4e3c28d-5332-4477-b88c-ab5aec31aa16}</UniqueIdentifier>
+    <Filter Include="Scenes\Objects and Components">
+      <UniqueIdentifier>{82d189d0-3c58-468e-8d1c-11310f544262}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,68 +57,73 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
     <ClInclude Include="include\CoreEngine.hpp">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneManager.hpp">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ObserverPattern.hpp">
-      <Filter>Header Files\Design Pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Singleton.hpp">
-      <Filter>Header Files\Design Pattern</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InputManager.hpp">
-      <Filter>Header Files\Input</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\ResourceManager.hpp">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="include\TestScene.hpp">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="include\iScene.hpp">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Scene.hpp">
-      <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core.hpp">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="include\SceneManager.hpp">
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\Design_patterns.hpp">
-      <Filter>Header Files\Design Pattern</Filter>
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Singleton.hpp">
+      <Filter>Design Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObserverPattern.hpp">
+      <Filter>Design Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputManager.hpp">
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\Input.hpp">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Physics.hpp">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Graphics.hpp">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Utilities.hpp">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Time.hpp">
-      <Filter>Header Files\Utilities</Filter>
+      <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\ObjectCollection.hpp">
-      <Filter>Header Files\ObjectComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Object.hpp">
-      <Filter>Header Files\ObjectComponents</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\iComponent.hpp">
-      <Filter>Header Files\ObjectComponents</Filter>
+      <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="include\ObjectComponents.hpp">
-      <Filter>Header Files\ObjectComponents</Filter>
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Object.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Physics.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iScene.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene.hpp">
+      <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\MainMenu.hpp">
-      <Filter>Header Files\Scene</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="include\TestScene.hpp">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utilities.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Time.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\background1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
