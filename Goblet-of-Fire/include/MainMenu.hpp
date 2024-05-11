@@ -38,7 +38,7 @@ namespace GobletOfFire {
       uint32_t processInput();
       void updateOption(uint32_t);
 
-      std::shared_ptr<Core::ResourceManager<Graphics::texture>> t_resource_manager_; //line 41
+      std::shared_ptr<Core::ResourceManager<Graphics::texture>> t_resource_manager_;
       std::shared_ptr<Graphics::buffer> local_buffer_;
       std::shared_ptr<Input::InputManager> input_manager_;
       std::weak_ptr<Core::CoreEngine> engine_;

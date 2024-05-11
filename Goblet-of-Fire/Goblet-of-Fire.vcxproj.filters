@@ -55,6 +55,9 @@
     <ClCompile Include="src\MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObjectCollection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -83,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="include\Input.hpp">
       <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ObjectCollection.hpp">
-      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\iComponent.hpp">
       <Filter>Interfaces</Filter>
@@ -119,6 +119,12 @@
     </ClInclude>
     <ClInclude Include="include\Graphics.hpp">
       <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iObject.hpp">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectCollection.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

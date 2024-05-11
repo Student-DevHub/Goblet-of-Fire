@@ -11,7 +11,7 @@ namespace GobletOfFire {
 
     void CoreEngine::init() {
       main_window_ = std::make_shared<Graphics::window>(
-        sf::VideoMode(1280, 720), "Window", sf::Style::Default);
+        sf::VideoMode(1280, 720), "Goblet Of Fire", sf::Style::Default);
 
       input_handler_ = std::make_shared<Input::InputManager>(main_window_);
 

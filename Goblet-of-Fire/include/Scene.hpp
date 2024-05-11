@@ -4,10 +4,8 @@
 
 namespace GobletOfFire {
   namespace Scene {
-    //classes in this namespace
     class iScene;
-
-    //namespace variables
+    struct GameDetails;
   }
 }
 

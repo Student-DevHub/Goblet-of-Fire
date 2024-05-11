@@ -26,6 +26,7 @@
     <ClInclude Include="include\Graphics.hpp" />
     <ClInclude Include="include\Input.hpp" />
     <ClInclude Include="include\InputManager.hpp" />
+    <ClInclude Include="include\iObject.hpp" />
     <ClInclude Include="include\MainMenu.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\ObjectCollection.hpp" />
@@ -48,6 +49,7 @@
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\NamespaceVars.cpp" />
     <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\ObjectCollection.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\TestScene.cpp" />

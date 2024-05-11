@@ -15,8 +15,7 @@ namespace GobletOfFire {
     public:
       ObjectCollection() = default;
 
-
-      void add(const std::shared_ptr<Object>&);
+      void add(const std::shared_ptr<iObject>&);
       void update(const iComponent::Type, const Utilities::Time::duration);
       void render(Graphics::buffer&);
 
@@ -24,7 +23,8 @@ namespace GobletOfFire {
       void processRemovals();
 
     private:
-
+      std::vector<std::shared_ptr<iObject>> new_objects_;
+      std::vector<std::shared_ptr<iObject>> object_collection_;
     };
   }
 }
