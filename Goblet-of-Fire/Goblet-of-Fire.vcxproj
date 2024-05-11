@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\CharacterSelectionA.hpp" />
+    <ClInclude Include="include\CharacterSelectionB.hpp" />
     <ClInclude Include="include\iComponent.hpp" />
     <ClInclude Include="include\Core.hpp" />
     <ClInclude Include="include\CoreEngine.hpp" />
@@ -43,6 +45,8 @@
     <ClInclude Include="include\Utilities.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CharacterSelectionA.cpp" />
+    <ClCompile Include="src\CharacterSelectionB.cpp" />
     <ClCompile Include="src\CoreEngine.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />

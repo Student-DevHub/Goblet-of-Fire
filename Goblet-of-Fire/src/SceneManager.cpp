@@ -6,13 +6,17 @@ namespace GobletOfFire {
     SceneManager::SceneManager(const std::shared_ptr<Core::CoreEngine>& main_engine, 
       const std::shared_ptr<Input::InputManager>& input_handler)  
       : current_scene_(0), main_engine_(main_engine),
-        active_buffer_(nullptr), input_handler_(input_handler) {
-      
-      auto main_menu = std::make_shared<Scene::MainMenu>(input_handler_, main_engine_);
-      auto scene = std::make_pair(1, main_menu);
-      addNewScene(scene);
-      switchTo(scene.first);
+        active_buffer_(nullptr), input_handler_(input_handler) {}
 
+    void SceneManager::init() {
+      auto main_menu = std::make_shared<Scene::MainMenu>(shared_from_this(), input_handler_, main_engine_);
+      auto selection_a = std::make_shared<Scene::CharacterS_A>(shared_from_this(), input_handler_);
+      auto selection_b = std::make_shared<Scene::CharacterS_B>(shared_from_this(), input_handler_);
+
+      addNewScene(std::make_pair(1, main_menu));
+      addNewScene(std::make_pair(2, selection_a));
+      addNewScene(std::make_pair(3, selection_b));
+      switchTo(1);
     }
 
     void SceneManager::update() {

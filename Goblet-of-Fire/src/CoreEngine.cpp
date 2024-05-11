@@ -17,6 +17,7 @@ namespace GobletOfFire {
 
       scene_manager_ = std::make_shared<Core::SceneManager>(
         shared_from_this(), input_handler_);
+      scene_manager_->init();
 
       calculateSuitableFPS();
     }

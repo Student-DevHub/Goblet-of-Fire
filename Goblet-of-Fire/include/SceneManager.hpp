@@ -20,6 +20,7 @@ namespace GobletOfFire {
       SceneManager(const std::shared_ptr<CoreEngine>&, const std::shared_ptr<Input::InputManager>&);
       ~SceneManager() {}
 
+      void init();
       void update();
 
       std::shared_ptr<Graphics::buffer> getActiveBuffer() const;
@@ -30,7 +31,7 @@ namespace GobletOfFire {
       void remove(uint32_t);
 
     private:
-      std::shared_ptr<Core::CoreEngine> main_engine_;
+      std::weak_ptr<Core::CoreEngine> main_engine_;
       std::shared_ptr<Input::InputManager> input_handler_;
 
       std::map<uint32_t,

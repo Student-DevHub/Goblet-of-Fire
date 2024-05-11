@@ -1,6 +1,6 @@
 #pragma once
-#ifndef MAIN_MENU_HPP
-#define MAIN_MENU_HPP
+#ifndef CHARACTER_B_HPP
+#define CHARACTER_B_HPP
 
 #include <functional>
 #include <stdexcept>
@@ -16,10 +16,9 @@
 
 namespace GobletOfFire {
   namespace Scene {
-    class MainMenu : public Scene::iScene {
+    class CharacterS_B : public Scene::iScene {
     public:
-      MainMenu(const std::shared_ptr<Core::SceneManager>&, const std::shared_ptr<Input::InputManager>&,
-        const std::weak_ptr<Core::CoreEngine>&);
+      CharacterS_B(const std::shared_ptr<Core::SceneManager>&, const std::shared_ptr<Input::InputManager>&);
       virtual void create() override;
       virtual void destroy() override {}
 
@@ -41,7 +40,6 @@ namespace GobletOfFire {
       std::shared_ptr<Core::ResourceManager<Graphics::texture>> t_resource_manager_;
       std::shared_ptr<Graphics::buffer> local_buffer_;
       std::shared_ptr<Input::InputManager> input_manager_;
-      std::weak_ptr<Core::CoreEngine> engine_;
       std::weak_ptr<Core::SceneManager> scene_manager_;
 
       std::unique_ptr<Graphics::sprite> background_;
@@ -49,12 +47,12 @@ namespace GobletOfFire {
       std::unique_ptr<Graphics::sprite> option_;
 
       uint32_t c_option_;
-      const uint32_t kTotalOptions_ = 3;
+      const uint32_t kTotalOptions_ = 6;
 
       std::map<uint32_t, std::shared_ptr<Graphics::texture>> option_textures_;
-      std::map<uint32_t, std::function<void()>> option_callbacks_;
+      std::map<uint32_t, std::function<void()>> callbacks_;
     };
   }
 }
 
-#endif // !MAIN_MENU_HPP
+#endif // !CHARACTER_B_HPP

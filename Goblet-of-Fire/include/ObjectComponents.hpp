@@ -14,5 +14,6 @@ namespace GobletOfFire {
 #include "iComponent.hpp"
 #include "iObject.hpp"
 #include "Object.hpp"
+#include "ObjectCollection.hpp"
 
 #endif // !OBJECT_COMPONENT_HPP
