@@ -19,8 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\cAnimation.hpp" />
     <ClInclude Include="include\CharacterSelectionA.hpp" />
     <ClInclude Include="include\CharacterSelectionB.hpp" />
+    <ClInclude Include="include\cKeyboardMovement.hpp" />
+    <ClInclude Include="include\cSprite.hpp" />
+    <ClInclude Include="include\cTransform.hpp" />
     <ClInclude Include="include\iComponent.hpp" />
     <ClInclude Include="include\Core.hpp" />
     <ClInclude Include="include\CoreEngine.hpp" />
@@ -29,6 +33,7 @@
     <ClInclude Include="include\Input.hpp" />
     <ClInclude Include="include\InputManager.hpp" />
     <ClInclude Include="include\iObject.hpp" />
+    <ClInclude Include="include\MainGame.hpp" />
     <ClInclude Include="include\MainMenu.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\ObjectCollection.hpp" />
@@ -45,9 +50,12 @@
     <ClInclude Include="include\Utilities.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cAnimation.cpp" />
     <ClCompile Include="src\CharacterSelectionA.cpp" />
     <ClCompile Include="src\CharacterSelectionB.cpp" />
     <ClCompile Include="src\CoreEngine.cpp" />
+    <ClCompile Include="src\cSprite.cpp" />
+    <ClCompile Include="src\cTransform.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
@@ -60,6 +68,25 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\background1.png" />
+    <Image Include="resources\background2.png" />
+    <Image Include="resources\character_selection_a_base.png" />
+    <Image Include="resources\character_selection_a_o1.png" />
+    <Image Include="resources\character_selection_a_o2.png" />
+    <Image Include="resources\character_selection_a_o3.png" />
+    <Image Include="resources\character_selection_a_o4.png" />
+    <Image Include="resources\character_selection_a_o5.png" />
+    <Image Include="resources\character_selection_a_o6.png" />
+    <Image Include="resources\character_selection_b_base.png" />
+    <Image Include="resources\character_selection_b_o1.png" />
+    <Image Include="resources\character_selection_b_o2.png" />
+    <Image Include="resources\character_selection_b_o3.png" />
+    <Image Include="resources\character_selection_b_o4.png" />
+    <Image Include="resources\character_selection_b_o5.png" />
+    <Image Include="resources\character_selection_b_o6.png" />
+    <Image Include="resources\main_scene_base.png" />
+    <Image Include="resources\main_scene_o1.png" />
+    <Image Include="resources\main_scene_o2.png" />
+    <Image Include="resources\main_scene_o3.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -118,6 +145,7 @@
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <SourcePath>C:\Users\Muhammad Farooq\Documents\Muhammad Farooq\Computer Science\Projects\Goblet-of-Fire\Goblet-of-Fire\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>

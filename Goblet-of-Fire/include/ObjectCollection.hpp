@@ -25,6 +25,8 @@ namespace GobletOfFire {
     private:
       std::vector<std::shared_ptr<iObject>> new_objects_;
       std::vector<std::shared_ptr<iObject>> object_collection_;
+
+      /* for collision detection */
     };
   }
 }

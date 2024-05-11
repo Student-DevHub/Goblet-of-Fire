@@ -9,6 +9,8 @@ namespace GobletOfFire {
     class MainMenu;
     class CharacterS_A;
     class CharacterS_B;
+    class MainGame;
+
   }
 }
 

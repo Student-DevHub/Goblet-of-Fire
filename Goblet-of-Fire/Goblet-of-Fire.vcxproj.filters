@@ -64,6 +64,15 @@
     <ClCompile Include="src\CharacterSelectionB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -138,9 +147,79 @@
     <ClInclude Include="include\CharacterSelectionB.hpp">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="include\MainGame.hpp">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cSprite.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cTransform.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cAnimation.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cKeyboardMovement.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\background1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\background2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_base.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o3.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o4.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o5.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_a_o6.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_base.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o3.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o4.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o5.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\character_selection_b_o6.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\main_scene_base.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\main_scene_o1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\main_scene_o2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\main_scene_o3.png">
       <Filter>Scenes\Resources</Filter>
     </Image>
   </ItemGroup>

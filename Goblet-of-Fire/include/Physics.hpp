@@ -3,13 +3,12 @@
 #define PHYSICS_HPP
 
 #include <cstdint>
-
 #include <SFML/System.hpp>
 
 namespace GobletOfFire {
   namespace Physics {
     template<typename T>
-    using point2 = sf::Vector2<T>; //custom name for vector2
+    using point2 = sf::Vector2<T>; 
 
     extern point2<uint32_t> window_dimensions_;
   }

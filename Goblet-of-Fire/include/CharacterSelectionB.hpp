@@ -13,6 +13,7 @@
 #include <Input.hpp>
 #include <Physics.hpp>
 #include <Graphics.hpp>
+#include <Design_patterns.hpp>
 
 namespace GobletOfFire {
   namespace Scene {

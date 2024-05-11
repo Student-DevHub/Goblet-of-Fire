@@ -4,8 +4,6 @@
 
 #include <memory>
 #include <cstdint>
-#include <chrono>
-#include <thread>
 #include <atomic>
 
 #include <Core.hpp>

@@ -8,6 +8,14 @@ namespace GobletOfFire {
     class iComponent;
     class Object;
     class ObjectCollection;
+
+    class cTransform;
+    class cSprite;
+    class cAnimation;
+    class cVelocity;
+    class cAcceleration;
+    class cColliderBox;
+    class cCollider;
   }
 }
 
@@ -15,5 +23,8 @@ namespace GobletOfFire {
 #include "iObject.hpp"
 #include "Object.hpp"
 #include "ObjectCollection.hpp"
+#include "cTransform.hpp"
+#include "cSprite.hpp"
+#include "cAnimation.hpp"
 
 #endif // !OBJECT_COMPONENT_HPP
