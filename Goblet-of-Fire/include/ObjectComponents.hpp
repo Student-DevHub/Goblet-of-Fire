@@ -12,6 +12,8 @@ namespace GobletOfFire {
     class cTransform;
     class cSprite;
     class cAnimation;
+    class cKeyboardMovement;
+
     class cVelocity;
     class cAcceleration;
     class cColliderBox;

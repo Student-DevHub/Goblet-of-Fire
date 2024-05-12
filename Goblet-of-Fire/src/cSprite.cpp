@@ -27,7 +27,7 @@ namespace GobletOfFire {
     void cSprite::update(const Utilities::Time::duration) {
       if (!transform_.expired()) {
         const auto& ptr = transform_.lock();
-        sprite_->setPosition(static_cast<float>(ptr->getPoint().x), static_cast<float>(ptr->getPoint().y));
+        sprite_->setPosition(ptr->getPoint().x, ptr->getPoint().y);
       }
     }
 

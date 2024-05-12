@@ -14,10 +14,9 @@ namespace GobletOfFire {
       enum class Type {
         kTransform,
         kMovement,
-        kSprite,
-        kRender,
         kAnimation,
         kCollision,
+        kSprite,
         kAttack,
         kHealth
       };

@@ -10,7 +10,7 @@
 namespace GobletOfFire::ObjectComponent {
   class cTransform : public iComponent {
   public:
-    cTransform(uint32_t, uint32_t);
+    cTransform(float, float);
 
     virtual void create() override;
     virtual void destroy() override;
@@ -21,13 +21,13 @@ namespace GobletOfFire::ObjectComponent {
     virtual void update(const Utilities::Time::duration) override;
     virtual void render(Graphics::buffer&) override;
 
-    void setPosition(uint32_t, uint32_t);
-    void setPosition(Physics::point2<uint32_t>);
+    void setPosition(float, float);
+    void setPosition(Physics::point2<float>);
 
-    Physics::point2<uint32_t> getPoint() const;
+    Physics::point2<float> getPoint() const;
 
   private:
-    Physics::point2<uint32_t> point_;
+    Physics::point2<float> point_;
   };
 }
 

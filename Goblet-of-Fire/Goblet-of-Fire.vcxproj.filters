@@ -73,6 +73,9 @@
     <ClCompile Include="src\cAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cKeyboardMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -159,7 +162,9 @@
     <ClInclude Include="include\cAnimation.hpp">
       <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
-    <ClInclude Include="include\cKeyboardMovement.hpp" />
+    <ClInclude Include="include\cKeyboardMovement.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\background1.png">
