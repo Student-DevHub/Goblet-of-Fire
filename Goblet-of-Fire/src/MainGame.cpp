@@ -9,7 +9,7 @@ namespace GobletOfFire::Scene {
   void MainGame::create() {
     object_collection_ = std::make_unique<ObjectComponent::ObjectCollection>();
 
-    local_buffer_ = std::make_unique<Graphics::buffer>();
+    local_buffer_ = std::make_shared<Graphics::buffer>();
     local_buffer_->create(Physics::window_dimensions_.x, Physics::window_dimensions_.y);
 
     t_resource_manager_ = Core::ResourceManager<Graphics::texture>::getInstance();
@@ -22,6 +22,7 @@ namespace GobletOfFire::Scene {
       player->addComponent(compType::kTransform, transform);
 
       auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
+      sprite->setScale(3, 3);
       player->addComponent(compType::kSprite, sprite);
 
       auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player, input_manager_);
@@ -34,10 +35,10 @@ namespace GobletOfFire::Scene {
       {
         auto animation_1 = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(200)));
+        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_1->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 0 }, { 65, 65 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(1, std::move(animation_1));
       }
@@ -45,15 +46,15 @@ namespace GobletOfFire::Scene {
       {
         auto animation_2 = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(200)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_2->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 1 }, { 65, 65 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(2, std::move(animation_2));
       }
@@ -61,9 +62,9 @@ namespace GobletOfFire::Scene {
       {
         auto animation_ = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(200)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 2 }, { 65, 65 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(3, std::move(animation_));
       }
@@ -71,16 +72,16 @@ namespace GobletOfFire::Scene {
       {
         auto animation_ = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 9, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(200)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 9, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(4, std::move(animation_));
       }
@@ -88,9 +89,9 @@ namespace GobletOfFire::Scene {
       {
         auto animation_ = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(200)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 4 }, { 65, 65 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(5, std::move(animation_));
       }
@@ -98,13 +99,13 @@ namespace GobletOfFire::Scene {
       {
         auto animation_ = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(200)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 5 }, { 65, 71 }, Utilities::Time::duration(50)));
 
         animation->addAnimation(6, std::move(animation_));
       }
@@ -135,7 +136,9 @@ namespace GobletOfFire::Scene {
   }
 
   void MainGame::updateRender() {
+    local_buffer_->clear(Graphics::color::Black);
     object_collection_->render(*local_buffer_);
+    //local_buffer_->display();
   }
 
   std::shared_ptr<Graphics::buffer> MainGame::getBuffer() const{

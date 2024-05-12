@@ -80,7 +80,7 @@ namespace GobletOfFire::ObjectComponent {
     auto c_point = transform_->getPoint();
 
     transform_->setPosition(c_point.x + current_move_.x, c_point.y + current_move_.y);
-    if ((!c_point.x) && (!c_point.y)) {
+    if (current_move_.x == 0 && current_move_.y == 0) {
       animation_->setAnimationState(4);
     }
     else {

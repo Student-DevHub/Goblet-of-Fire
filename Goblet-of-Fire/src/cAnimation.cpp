@@ -1,4 +1,5 @@
 #include "cAnimation.hpp"
+#include <iostream>
 
 namespace GobletOfFire {
   namespace ObjectComponent {
@@ -96,7 +97,6 @@ namespace GobletOfFire {
       if (sprite_.expired()) {
         throw std::runtime_error("cSprite is expired!");
       }
-
       sprite_.lock()->setTextureRect(data.origin_, data.size_);
     }
 
@@ -107,6 +107,9 @@ namespace GobletOfFire {
     }
 
     void cAnimation::setAnimationState(uint32_t state) {
+      if (current_state_ == state) {
+        return;
+      }
       auto it = animations_.find(state);
       if (it == animations_.end()) {
         throw std::runtime_error("Animation state wasn't found!");

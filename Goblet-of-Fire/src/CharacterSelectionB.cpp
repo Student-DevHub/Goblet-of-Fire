@@ -79,6 +79,7 @@ namespace GobletOfFire {
       local_buffer_->draw(*background_);
       local_buffer_->draw(*base_);
       local_buffer_->draw(*option_);
+      local_buffer_->display();
     }
 
     uint32_t CharacterS_B::processInput() {

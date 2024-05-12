@@ -27,6 +27,7 @@ namespace GobletOfFire::ObjectComponent {
     virtual void render(Graphics::buffer&) override;
 
     void setTextureRect(Physics::point2<int32_t> , Physics::point2<int32_t>);
+    void setScale(float, float);
 
   private:
     uint32_t sprite_id_;

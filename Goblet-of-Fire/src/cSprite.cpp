@@ -4,10 +4,10 @@
 namespace GobletOfFire {
   namespace ObjectComponent {
     cSprite::cSprite(uint32_t sprite_id, std::shared_ptr<iObject> owner)
-      : sprite_id_(sprite_id), owner_(owner), t_resource_manager_(nullptr) {}
+      : sprite_id_(sprite_id), owner_(owner), t_resource_manager_(nullptr), 
+      sprite_(std::make_unique<Graphics::sprite>()) {}
 
     void cSprite::create() {
-      sprite_ = std::make_unique<Graphics::sprite>();
       t_resource_manager_ = Core::ResourceManager<Graphics::texture>::getInstance();
       texture_ = t_resource_manager_->load(sprite_id_);
       sprite_->setTexture(*texture_);
@@ -40,6 +40,10 @@ namespace GobletOfFire {
     void cSprite::setTextureRect(Physics::point2<int32_t> origin, Physics::point2<int32_t> size) {
       spriteRect rectangle(origin.x, origin.y, size.x, size.y);
       sprite_->setTextureRect(rectangle);
+    }
+    void cSprite::setScale(float x, float y) {
+      if (sprite_)
+        sprite_->setScale(x, y);
     }
   }
 }
