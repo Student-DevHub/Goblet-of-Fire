@@ -12,11 +12,13 @@ namespace GobletOfFire {
       auto main_menu = std::make_shared<Scene::MainMenu>(shared_from_this(), input_handler_, main_engine_);
       auto selection_a = std::make_shared<Scene::CharacterS_A>(shared_from_this(), input_handler_);
       auto selection_b = std::make_shared<Scene::CharacterS_B>(shared_from_this(), input_handler_);
+      auto main_game = std::make_shared<Scene::MainGame>(shared_from_this(), input_handler_);
 
       addNewScene(std::make_pair(1, main_menu));
       addNewScene(std::make_pair(2, selection_a));
       addNewScene(std::make_pair(3, selection_b));
-      switchTo(1);
+      addNewScene(std::make_pair(4, main_game));
+      switchTo(4);
     }
 
     void SceneManager::update() {

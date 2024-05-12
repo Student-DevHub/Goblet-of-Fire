@@ -8,6 +8,7 @@ namespace GobletOfFire {
                         };
 
       std::for_each(components_.begin(), components_.end(), create_components);
+      destroyed_.store(false);
     }
 
     void Object::destroy() {

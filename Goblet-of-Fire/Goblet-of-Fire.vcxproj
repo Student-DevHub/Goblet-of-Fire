@@ -59,6 +59,7 @@
     <ClCompile Include="src\cTransform.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MainGame.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\NamespaceVars.cpp" />
     <ClCompile Include="src\Object.cpp" />

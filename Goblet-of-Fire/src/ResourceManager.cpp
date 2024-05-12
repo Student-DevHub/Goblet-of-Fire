@@ -23,7 +23,8 @@ namespace GobletOfFire {
       {123, "character_selection_b_o3.png"},
       {124, "character_selection_b_o4.png"},
       {125, "character_selection_b_o5.png"},
-      {126, "character_selection_b_o6.png"}
+      {126, "character_selection_b_o6.png"},
+      {1, "igris_sprite_sheet.png"}
         //add more mappings
     };
   }

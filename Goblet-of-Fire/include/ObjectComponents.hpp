@@ -28,5 +28,6 @@ namespace GobletOfFire {
 #include "cTransform.hpp"
 #include "cSprite.hpp"
 #include "cAnimation.hpp"
+#include "cKeyboardMovement.hpp"
 
 #endif // !OBJECT_COMPONENT_HPP

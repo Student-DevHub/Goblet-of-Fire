@@ -5,8 +5,6 @@
 #include <cstdint>
 #include <memory>
 
-#include <SFML/Graphics.hpp>
-
 #include <ObjectComponents.hpp>
 #include <Graphics.hpp>
 #include <Physics.hpp>

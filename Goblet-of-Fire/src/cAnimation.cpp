@@ -25,11 +25,12 @@ namespace GobletOfFire {
         current_frame_time_ + dt);
 
       if (current_frame_time_ >= getCurrentFrame().display_time_) {
-        current_frame_time_ = std::chrono::duration_cast<Utilities::Time::duration>(
-          current_frame_time_ - getCurrentFrame().display_time_
-        );
-        incrementFrame();
-
+        //while (current_frame_time_ >= getCurrentFrame().display_time_) {
+        //}
+          current_frame_time_ = std::chrono::duration_cast<Utilities::Time::duration>(
+            current_frame_time_ - getCurrentFrame().display_time_
+          );
+          incrementFrame();
         return true;
       }
 

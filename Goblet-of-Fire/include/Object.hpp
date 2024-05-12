@@ -15,22 +15,22 @@
 
 namespace GobletOfFire {
   namespace ObjectComponent {
-    class Object {
+    class Object : public iObject {
     public:
-      void create();
-      void destroy();
+      void create() override;
+      void destroy() override;
 
-      void activate();
-      void deActivate();
+      void activate() override;
+      void deActivate() override;
 
-      void update(const iComponent::Type, const Utilities::Time::duration) const;
-      void render(Graphics::buffer&) const;
+      void update(const iComponent::Type, const Utilities::Time::duration) const override;
+      void render(Graphics::buffer&) const override;
 
-      void addComponent(const iComponent::Type, const std::shared_ptr<iComponent>&);
-      void removeComponent(const iComponent::Type);
-      std::shared_ptr<iComponent> getComponent(const iComponent::Type) const;
+      void addComponent(const iComponent::Type, const std::shared_ptr<iComponent>&) override;
+      void removeComponent(const iComponent::Type) override;
+      std::shared_ptr<iComponent> getComponent(const iComponent::Type) const override;
 
-      bool isDestroyed() const;
+      bool isDestroyed() const override;
 
     private:
       using iterator = std::unordered_map<iComponent::Type, std::shared_ptr<iComponent>>::const_iterator;

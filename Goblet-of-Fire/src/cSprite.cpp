@@ -1,4 +1,5 @@
 #include "cSprite.hpp"
+#include <iostream>
 
 namespace GobletOfFire {
   namespace ObjectComponent {
@@ -6,6 +7,7 @@ namespace GobletOfFire {
       : sprite_id_(sprite_id), owner_(owner), t_resource_manager_(nullptr) {}
 
     void cSprite::create() {
+      sprite_ = std::make_unique<Graphics::sprite>();
       t_resource_manager_ = Core::ResourceManager<Graphics::texture>::getInstance();
       texture_ = t_resource_manager_->load(sprite_id_);
       sprite_->setTexture(*texture_);
@@ -13,12 +15,12 @@ namespace GobletOfFire {
       if (owner_.expired()) {
         throw std::runtime_error("Owner of cSprite is expired!");
       }
-
       auto ptr = std::dynamic_pointer_cast<cTransform>(owner_.lock()->getComponent(iComponent::Type::kTransform));
       if (!ptr)
         throw std::runtime_error("Pointer not casted to cTransform in cSprite");
 
       transform_ = ptr;
+      sprite_->setTextureRect(sf::IntRect(0, 0, 65, 65));
     }
 
     void cSprite::destroy() {}
@@ -36,7 +38,7 @@ namespace GobletOfFire {
     }
 
     void cSprite::setTextureRect(Physics::point2<int32_t> origin, Physics::point2<int32_t> size) {
-      spriteRect rectangle(origin, size);
+      spriteRect rectangle(origin.x, origin.y, size.x, size.y);
       sprite_->setTextureRect(rectangle);
     }
   }

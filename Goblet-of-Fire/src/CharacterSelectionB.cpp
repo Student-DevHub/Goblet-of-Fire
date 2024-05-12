@@ -45,7 +45,7 @@ namespace GobletOfFire {
       auto continue_ = [&]() {
         if (scene_manager_.expired()) return;
 
-        scene_manager_.lock()->switchTo(1);
+        scene_manager_.lock()->switchTo(4);
         };
 
       auto empty = [&]() {};
