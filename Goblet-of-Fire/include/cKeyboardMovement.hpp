@@ -27,20 +27,25 @@ namespace GobletOfFire::ObjectComponent {
     virtual void render(Graphics::buffer&) override;
 
     void changeKeyBind(uint32_t, Input::InputManager::Key);
-    void changeMovementSpeed(float, float);
-    void changeMovementSpeed(Physics::point2<float>);
     
   private:
+    void whileInAir();
+    void whileOnGround();
+
     std::weak_ptr<iObject> owner_;
-    std::shared_ptr<cTransform> transform_;
-    std::shared_ptr<cAnimation> animation_;
+    std::weak_ptr<cPhysics> physics_;
+    std::weak_ptr<cAnimation> animation_;
     std::shared_ptr<Input::InputManager> input_;
 
-    std::map<uint32_t, Input::InputManager::Key> key_binds_;
-    std::map<uint32_t, std::function<void()>> call_backs_;
+    /*
+    * 1. Jump
+    * 2. Left
+    * 3. Right
+    * 4. Attack
+    */
 
-    Physics::point2<float> speed_;
-    Physics::point2<float> current_move_;
+    std::map<uint32_t, Input::InputManager::Key> key_binds_;
+
   };
 }
 

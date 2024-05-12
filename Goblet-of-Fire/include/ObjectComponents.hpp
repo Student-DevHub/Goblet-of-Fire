@@ -13,8 +13,8 @@ namespace GobletOfFire {
     class cSprite;
     class cAnimation;
     class cKeyboardMovement;
+    class cPhysics;
 
-    class cVelocity;
     class cAcceleration;
     class cColliderBox;
     class cCollider;
@@ -29,5 +29,6 @@ namespace GobletOfFire {
 #include "cSprite.hpp"
 #include "cAnimation.hpp"
 #include "cKeyboardMovement.hpp"
+#include "cPhysics.hpp"
 
 #endif // !OBJECT_COMPONENT_HPP

@@ -21,14 +21,17 @@ namespace GobletOfFire::Scene {
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player->addComponent(compType::kTransform, transform);
 
+      auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 480.f);
+      player->addComponent(compType::kPhysics, physics);
+
       auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
       sprite->setScale(1.5, 1.5);
       player->addComponent(compType::kSprite, sprite);
 
       auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player, input_manager_);
-      kb->changeKeyBind(1, Input::InputManager::Key::kLeft);
-      kb->changeKeyBind(2, Input::InputManager::Key::kRight);
-      kb->changeKeyBind(3, Input::InputManager::Key::kUp);
+      kb->changeKeyBind(1, Input::InputManager::Key::kUp);
+      kb->changeKeyBind(2, Input::InputManager::Key::kLeft);
+      kb->changeKeyBind(3, Input::InputManager::Key::kRight);
       player->addComponent(compType::kMovement, kb);
 
       auto animation = std::make_shared<ObjectComponent::cAnimation>(player);
@@ -109,6 +112,7 @@ namespace GobletOfFire::Scene {
 
         animation->addAnimation(6, std::move(animation_));
       }
+      animation->setAnimationState(4);
       player->addComponent(compType::kAnimation, animation);
 
       object_collection_->add(player);
@@ -150,9 +154,10 @@ namespace GobletOfFire::Scene {
     using compType = ObjectComponent::iComponent::Type;
 
     auto dt = Utilities::Time::getTimeElapsed(last_update_);
-    object_collection_->update(compType::kMovement, dt);
-    object_collection_->processAddition();
     object_collection_->processRemovals();
+    object_collection_->processAddition();
+    object_collection_->update(compType::kMovement, dt);
+    object_collection_->update(compType::kPhysics, dt);
     object_collection_->update(compType::kAnimation, dt);
     object_collection_->update(compType::kSprite, dt);
     last_update_ = Utilities::Time::clock::now();

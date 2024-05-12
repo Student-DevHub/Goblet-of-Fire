@@ -15,8 +15,9 @@ namespace GobletOfFire {
         kTransform,
         kMovement,
         kAnimation,
-        kCollision,
         kSprite,
+        kPhysics,
+        kCollision,
         kAttack,
         kHealth
       };
