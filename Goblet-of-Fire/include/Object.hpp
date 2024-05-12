@@ -17,6 +17,10 @@ namespace GobletOfFire {
   namespace ObjectComponent {
     class Object : public iObject {
     public:
+
+      Object(uint32_t layer) { kLayer_ = layer; }
+      Object() { kLayer_ = 0u; }
+
       void create() override;
       void destroy() override;
 

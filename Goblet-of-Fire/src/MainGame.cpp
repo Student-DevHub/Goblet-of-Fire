@@ -15,14 +15,14 @@ namespace GobletOfFire::Scene {
     t_resource_manager_ = Core::ResourceManager<Graphics::texture>::getInstance();
 
     {
-      auto player = std::make_shared<ObjectComponent::Object>();
+      auto player = std::make_shared<ObjectComponent::Object>(4);
       using compType = ObjectComponent::iComponent::Type;
 
-      auto transform = std::make_shared<ObjectComponent::cTransform>(10.f, 10.f);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player->addComponent(compType::kTransform, transform);
 
       auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
-      sprite->setScale(3, 3);
+      sprite->setScale(1.5, 1.5);
       player->addComponent(compType::kSprite, sprite);
 
       auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player, input_manager_);
@@ -72,16 +72,16 @@ namespace GobletOfFire::Scene {
       {
         auto animation_ = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
-        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 9, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(50)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 0, 65 * 3 }, { 65, 60 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 1, 65 * 3 }, { 65, 60 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 2, 65 * 3 }, { 65, 60 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 3, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 4, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 5, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 6, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 7, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 8, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
+        animation_->addFrame(ObjectComponent::cAnimation::FrameData({ 65 * 9, 65 * 3 }, { 65, 65 }, Utilities::Time::duration(150)));
 
         animation->addAnimation(4, std::move(animation_));
       }
@@ -113,6 +113,28 @@ namespace GobletOfFire::Scene {
 
       object_collection_->add(player);
     }
+
+    {
+      auto map = std::make_shared<ObjectComponent::Object>();
+
+      auto sprite = std::make_shared<ObjectComponent::cSprite>(50, map);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(0.f, 0.f);
+      map->addComponent(ObjectComponent::iComponent::Type::kSprite, sprite);
+      map->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+      
+      object_collection_->add(map);
+    }
+
+    {
+      auto map = std::make_shared<ObjectComponent::Object>(5);
+
+      auto sprite = std::make_shared<ObjectComponent::cSprite>(51, map);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(0.f, 0.f);
+      map->addComponent(ObjectComponent::iComponent::Type::kSprite, sprite);
+      map->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+
+      object_collection_->add(map);
+    }
   }
 
   void MainGame::destroy() {}
@@ -132,6 +154,7 @@ namespace GobletOfFire::Scene {
     object_collection_->processAddition();
     object_collection_->processRemovals();
     object_collection_->update(compType::kAnimation, dt);
+    object_collection_->update(compType::kSprite, dt);
     last_update_ = Utilities::Time::clock::now();
   }
 

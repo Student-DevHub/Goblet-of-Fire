@@ -10,6 +10,8 @@ namespace GobletOfFire {
   namespace ObjectComponent {
     class iObject {
     public:
+      uint32_t kLayer_;
+
       virtual void create() = 0;
       virtual void destroy() = 0;
 

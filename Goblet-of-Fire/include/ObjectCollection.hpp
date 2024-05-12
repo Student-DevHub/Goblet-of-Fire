@@ -3,6 +3,7 @@
 #define OBJECT_COLLECTION_HPP
 
 #include <vector>
+#include <map>
 #include <algorithm>
 #include <execution>
 
@@ -24,7 +25,7 @@ namespace GobletOfFire {
 
     private:
       std::vector<std::shared_ptr<iObject>> new_objects_;
-      std::vector<std::shared_ptr<iObject>> object_collection_;
+      std::map<uint32_t, std::unique_ptr<std::vector<std::shared_ptr<iObject>>>> object_collection_;
 
       /* for collision detection */
     };

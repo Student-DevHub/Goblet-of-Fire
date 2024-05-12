@@ -20,7 +20,6 @@ namespace GobletOfFire {
         throw std::runtime_error("Pointer not casted to cTransform in cSprite");
 
       transform_ = ptr;
-      sprite_->setTextureRect(sf::IntRect(0, 0, 65, 65));
     }
 
     void cSprite::destroy() {}
