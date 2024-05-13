@@ -53,6 +53,7 @@ namespace GobletOfFire::Physics {
     QuadTree(uint32_t = 30);
 
     bool insert(std::shared_ptr<ObjectComponent::cCollision> object);
+    void update() { root_->update(); }
 
     QuadTreeNode::collisions getPotentialColliders(const Physics::worldBox<float>& queryBox) const;
 

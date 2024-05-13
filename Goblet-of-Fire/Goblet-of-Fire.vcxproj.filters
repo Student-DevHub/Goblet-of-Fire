@@ -82,6 +82,18 @@
     <ClCompile Include="src\cPhysics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="include\cCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QuadTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LedgeCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -172,6 +184,18 @@
       <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
     <ClInclude Include="include\cPhysics.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cCollision.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\QuadTree.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlayerCollision.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LedgeCollision.hpp">
       <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
   </ItemGroup>

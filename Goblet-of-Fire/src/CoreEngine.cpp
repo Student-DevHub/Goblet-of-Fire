@@ -67,7 +67,7 @@ namespace GobletOfFire {
 
       if (ptr_texture) {
         Graphics::sprite sprite_to_draw(ptr_texture->getTexture());
-        sprite_to_draw.setTextureRect(ObjectComponent::cSprite::spriteRect(0, ptr_texture->getSize().y, ptr_texture->getSize().x, -1 * ptr_texture->getSize().y));
+        //sprite_to_draw.setTextureRect(ObjectComponent::cSprite::spriteRect(0, ptr_texture->getSize().y, ptr_texture->getSize().x, -1 * ptr_texture->getSize().y));
         main_window_->draw(sprite_to_draw);
       }
 

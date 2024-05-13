@@ -2,6 +2,7 @@
 #ifndef MAIN_GAME_HPP
 #define MAIN_GAME_HPP
 
+#include <Core.hpp>
 #include <Scene.hpp>
 #include <Graphics.hpp>
 #include <Physics.hpp>

@@ -35,6 +35,7 @@
     <ClInclude Include="include\Input.hpp" />
     <ClInclude Include="include\InputManager.hpp" />
     <ClInclude Include="include\iObject.hpp" />
+    <ClInclude Include="include\LedgeCollision.hpp" />
     <ClInclude Include="include\MainGame.hpp" />
     <ClInclude Include="include\MainMenu.hpp" />
     <ClInclude Include="include\Object.hpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="include\ObjectComponents.hpp" />
     <ClInclude Include="include\ObserverPattern.hpp" />
     <ClInclude Include="include\Physics.hpp" />
+    <ClInclude Include="include\PlayerCollision.hpp" />
     <ClInclude Include="include\QuadTree.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />
     <ClInclude Include="include\iScene.hpp" />
@@ -63,12 +65,14 @@
     <ClCompile Include="src\cSprite.cpp" />
     <ClCompile Include="src\cTransform.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\LedgeCollision.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainGame.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\NamespaceVars.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\ObjectCollection.cpp" />
+    <ClCompile Include="src\PlayerCollision.cpp" />
     <ClCompile Include="src\QuadTree.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />

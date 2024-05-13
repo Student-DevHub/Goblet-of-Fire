@@ -28,12 +28,13 @@ namespace GobletOfFire::Scene {
       box.d_.x = 23.f;
       box.d_.y = 33.f;
 
-      auto collision = std::make_shared<ObjectComponent::cCollision>(
-        player, quadtree_, box, ObjectComponent::cCollision::Layer::kPlayerLayer
+      auto collision = std::make_shared<ObjectComponent::PlayerCollision>(
+        player, quadtree_, box
       );
       player->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
 
-      auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 480.f);
+      auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 520.f);
+      physics->setAcceleration({ 0.f, 520.f });
       player->addComponent(compType::kPhysics, physics);
 
       auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
@@ -149,6 +150,83 @@ namespace GobletOfFire::Scene {
       map->addComponent(ObjectComponent::iComponent::Type::kSprite, sprite);
       map->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
 
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 0.f;
+      box.offset_.y = 570.f - 40.f;
+      box.d_.x = 1279.7f;
+      box.d_.y = 142.f + 40;
+
+      auto collision = std::make_shared<ObjectComponent::LedgeCollision>(map, quadtree_, box);
+      map->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+
+      object_collection_->add(map);
+    }
+
+    {
+      auto ledge = std::make_shared<ObjectComponent::Object>(5);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(81.f, 305.f);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 0.f;
+      box.offset_.y = -40.f;
+      box.d_.x = 266.f;
+      box.d_.y = 29.f + 40.f;
+      auto collision = std::make_shared<ObjectComponent::LedgeCollision>(ledge, quadtree_, box);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+
+      object_collection_->add(ledge);
+    }
+    {
+      auto ledge = std::make_shared<ObjectComponent::Object>(5);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(914.f, 305.f);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 0.f;
+      box.offset_.y = -40.f;
+      box.d_.x = 266.f;
+      box.d_.y = 29.f + 40.f;
+      auto collision = std::make_shared<ObjectComponent::LedgeCollision>(ledge, quadtree_, box);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+
+      object_collection_->add(ledge);
+    }
+    {
+      auto ledge = std::make_shared<ObjectComponent::Object>(5);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(505.f, 156.f);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 0.f;
+      box.offset_.y = -40.f;
+      box.d_.x = 266.f;
+      box.d_.y = 29.f + 40.f;
+      auto collision = std::make_shared<ObjectComponent::LedgeCollision>(ledge, quadtree_, box);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+
+      object_collection_->add(ledge);
+    }
+    {
+      auto ledge = std::make_shared<ObjectComponent::Object>(5);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(515, 415.f);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 0.f;
+      box.offset_.y = -40.f;
+      box.d_.x = 266.f;
+      box.d_.y = 29.f + 40.f;
+      auto collision = std::make_shared<ObjectComponent::LedgeCollision>(ledge, quadtree_, box);
+      ledge->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+
+      object_collection_->add(ledge);
+    }
+
+    {
+      auto map = std::make_shared<ObjectComponent::Object>(5);
+
+      auto sprite = std::make_shared<ObjectComponent::cSprite>(52, map);
+      auto transform = std::make_shared<ObjectComponent::cTransform>(0.f, 0.f);
+      map->addComponent(ObjectComponent::iComponent::Type::kSprite, sprite);
+      map->addComponent(ObjectComponent::iComponent::Type::kTransform, transform);
+
       object_collection_->add(map);
     }
   }
@@ -171,6 +249,8 @@ namespace GobletOfFire::Scene {
     object_collection_->update(compType::kMovement, dt);
     object_collection_->update(compType::kPhysics, dt);
     object_collection_->update(compType::kAnimation, dt);
+    quadtree_->update();
+    object_collection_->update(compType::kCollision, dt);
     object_collection_->update(compType::kSprite, dt);
     last_update_ = Utilities::Time::clock::now();
   }
@@ -178,7 +258,7 @@ namespace GobletOfFire::Scene {
   void MainGame::updateRender() {
     local_buffer_->clear(Graphics::color::Black);
     object_collection_->render(*local_buffer_);
-    //local_buffer_->display();
+    local_buffer_->display();
   }
 
   std::shared_ptr<Graphics::buffer> MainGame::getBuffer() const{

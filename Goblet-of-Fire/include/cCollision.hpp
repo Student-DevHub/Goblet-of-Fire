@@ -40,8 +40,8 @@ namespace GobletOfFire::ObjectComponent {
     uint32_t getLayerMask() const;
 
   protected:
-    virtual void resolveCollision(std::shared_ptr<cCollision>);
-    virtual void checkWindowBounds();
+    virtual void resolveCollision(std::shared_ptr<cCollision>) = 0;
+    virtual void checkWindowBounds() = 0;
 
     const CollisionBox collider_;
 
@@ -57,5 +57,8 @@ namespace GobletOfFire::ObjectComponent {
     std::shared_ptr<Physics::QuadTree> quadtree_;
   };
 }
+
+#include <LedgeCollision.hpp>
+#include <PlayerCollision.hpp>
 
 #endif // !C_COLLISION_HPP

@@ -44,7 +44,7 @@ namespace GobletOfFire::ObjectComponent {
     auto velocity = physics_.lock()->getVelocity();
     auto acceleration = physics_.lock()->getAcceleration();
 
-    if (velocity.y != 0 || acceleration.y != 0) {
+    if (velocity.y != 0) {
       whileInAir();
     }
     else {
@@ -58,6 +58,19 @@ namespace GobletOfFire::ObjectComponent {
 
   void cKeyboardMovement::whileInAir() {
     auto velocity = physics_.lock()->getVelocity();
+    auto max_velocity = physics_.lock()->getMaxVelocity();
+
+    if (input_->isKeyPressed(key_binds_[2])) {
+      animation_.lock()->changeDirection(cAnimation::FacingDirection::kLeft);
+      velocity.x = -1 * max_velocity.x;
+    }
+    else if (input_->isKeyPressed(key_binds_[3])) {
+      animation_.lock()->changeDirection(cAnimation::FacingDirection::kRight);
+      velocity.x = max_velocity.x;
+    }
+    else if ((!input_->isKeyHold(key_binds_[2])) && (!input_->isKeyHold(key_binds_[3]))) {
+      velocity.x = 0;
+    }
 
     if (velocity.y >= 0) {
       animation_.lock()->setAnimationState(5);

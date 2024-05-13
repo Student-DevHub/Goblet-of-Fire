@@ -1,4 +1,5 @@
 #include <cCollision.hpp>
+#include <iostream>
 
 namespace GobletOfFire::ObjectComponent {
   cCollision::cCollision(std::shared_ptr<iObject> owner,
@@ -55,14 +56,6 @@ namespace GobletOfFire::ObjectComponent {
   }
   uint32_t cCollision::getLayerMask() const {
     return layer_mask_;
-  }
-
-  void cCollision::resolveCollision(std::shared_ptr<cCollision>)
-  {
-  }
-
-  void cCollision::checkWindowBounds()
-  {
   }
 
   uint32_t cCollision::getCollisionLayer(uint32_t layer_mask) {

@@ -70,12 +70,11 @@ namespace GobletOfFire::Physics {
       auto status = isInside(it->lock()->getBoundingBox());
       if (status == InsertStatus::kNotInside || status == InsertStatus::kPartiallyInside) {
         auto ptr = it->lock();
-        objects_.erase(it);
+        *it = std::weak_ptr<ObjectComponent::cCollision>();
         if (parent_) {
           parent_->insert(ptr);
         }
       }
-      if (it == objects_.end()) break;
     }
 
     if (is_divided_) {
