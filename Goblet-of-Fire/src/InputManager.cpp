@@ -83,6 +83,8 @@ namespace GobletOfFire {
       mapBit(static_cast<uint32_t>(Key::kLeft), keyboard::isKeyPressed(keyboard::Left));
       mapBit(static_cast<uint32_t>(Key::kRight), keyboard::isKeyPressed(keyboard::Right));
       mapBit(static_cast<uint32_t>(Key::kEnter), keyboard::isKeyPressed(keyboard::Enter));
+      mapBit(static_cast<uint32_t>(Key::kF), keyboard::isKeyPressed(keyboard::F));
+      mapBit(static_cast<uint32_t>(Key::k0), keyboard::isKeyPressed(keyboard::Numpad0));
     }
 
     void InputManager::updateMouse() {

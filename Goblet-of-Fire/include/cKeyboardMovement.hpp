@@ -15,7 +15,7 @@
 namespace GobletOfFire::ObjectComponent {
   class cKeyboardMovement : public iComponent {
   public:
-    cKeyboardMovement(std::shared_ptr<iObject>, std::shared_ptr<Input::InputManager>);
+    cKeyboardMovement(std::shared_ptr<iObject>, std::shared_ptr<Input::InputManager>, std::shared_ptr<iObject>);
 
     virtual void create() override;
     virtual void destroy() override;
@@ -31,11 +31,16 @@ namespace GobletOfFire::ObjectComponent {
   private:
     void whileInAir();
     void whileOnGround();
+    void checkForAttack(Utilities::Time::duration);
 
     std::weak_ptr<iObject> owner_;
     std::weak_ptr<cPhysics> physics_;
     std::weak_ptr<cAnimation> animation_;
     std::shared_ptr<Input::InputManager> input_;
+
+    bool isAttack;
+    std::weak_ptr<iObject> opponent_;
+    Utilities::Time::duration attack_duration_;
 
     /*
     * 1. Jump

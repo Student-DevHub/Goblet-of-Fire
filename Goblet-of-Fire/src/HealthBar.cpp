@@ -1,5 +1,6 @@
 #include "HealthBar.hpp"
 
+#include <iostream>
 #include <ObjectComponents.hpp>
 
 namespace GobletOfFire::ObjectComponent {
@@ -32,8 +33,11 @@ namespace GobletOfFire::ObjectComponent {
     auto ptr = dynamic_cast<cHealth*>(subject);
     if (!ptr) return;
 
+    std::cerr << "Updating health bar\n";
+
     auto health = ptr->getHealth();
     size_t i = (health > 70) ? 0 : (health > 40) ? 1 : 2;
+    sprite_->setTexture(*textures_[i]);
   }
 
   void HealthBar::subscribe(DesignPatterns::Subject<cHealth>* subject) {

@@ -15,18 +15,21 @@ namespace GobletOfFire::Scene {
 
     t_resource_manager_ = Core::ResourceManager<Graphics::texture>::getInstance();
 
+    std::shared_ptr<ObjectComponent::Object> player1;
+    std::shared_ptr<ObjectComponent::Object> player2;
+
     {
-      auto player = std::make_shared<ObjectComponent::Object>(4);
+      player1 = std::make_shared<ObjectComponent::Object>(4);
       using compType = ObjectComponent::iComponent::Type;
 
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
-      player->addComponent(compType::kTransform, transform);
+      player1->addComponent(compType::kTransform, transform);
 
       auto health = std::make_shared<ObjectComponent::cHealth>();
-      player->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+      player1->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
 
       auto health_bar = std::make_shared<ObjectComponent::HealthBar>(1);
-      health_bar->subscribe(health.get());
+      health->attach(health_bar);
       auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
       object_collection_->add(health_obj);
 
@@ -38,25 +41,19 @@ namespace GobletOfFire::Scene {
       box.d_.y = 33.f;
 
       auto collision = std::make_shared<ObjectComponent::PlayerCollision>(
-        player, quadtree_, box
+        player1, quadtree_, box
       );
-      player->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+      player1->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
 
-      auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 520.f);
+      auto physics = std::make_shared<ObjectComponent::cPhysics>(player1, Physics::point2<float>(400.f, 400.f), 45.f, 520.f);
       physics->setAcceleration({ 0.f, 520.f });
-      player->addComponent(compType::kPhysics, physics);
+      player1->addComponent(compType::kPhysics, physics);
 
-      auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
+      auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player1);
       sprite->setScale(1.5, 1.5);
-      player->addComponent(compType::kSprite, sprite);
+      player1->addComponent(compType::kSprite, sprite);
 
-      auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player, input_manager_);
-      kb->changeKeyBind(1, Input::InputManager::Key::kUp);
-      kb->changeKeyBind(2, Input::InputManager::Key::kLeft);
-      kb->changeKeyBind(3, Input::InputManager::Key::kRight);
-      player->addComponent(compType::kMovement, kb);
-
-      auto animation = std::make_shared<ObjectComponent::cAnimation>(player);
+      auto animation = std::make_shared<ObjectComponent::cAnimation>(player1);
       {
         auto animation_1 = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
@@ -135,23 +132,23 @@ namespace GobletOfFire::Scene {
         animation->addAnimation(6, std::move(animation_));
       }
       animation->setAnimationState(4);
-      player->addComponent(compType::kAnimation, animation);
+      player1->addComponent(compType::kAnimation, animation);
 
-      object_collection_->add(player);
+      object_collection_->add(player1);
     }
 
     {
-      auto player = std::make_shared<ObjectComponent::Object>(4);
+      player2 = std::make_shared<ObjectComponent::Object>(4);
       using compType = ObjectComponent::iComponent::Type;
 
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
-      player->addComponent(compType::kTransform, transform);
+      player2->addComponent(compType::kTransform, transform);
 
       auto health = std::make_shared<ObjectComponent::cHealth>();
-      player->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+      player2->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
 
       auto health_bar = std::make_shared<ObjectComponent::HealthBar>(2);
-      health_bar->subscribe(health.get());
+      health->attach(health_bar);
       auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
       object_collection_->add(health_obj);
 
@@ -162,25 +159,19 @@ namespace GobletOfFire::Scene {
       box.d_.y = 33.f;
 
       auto collision = std::make_shared<ObjectComponent::PlayerCollision>(
-        player, quadtree_, box
+        player2, quadtree_, box
       );
-      player->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
+      player2->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
 
-      auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 520.f);
+      auto physics = std::make_shared<ObjectComponent::cPhysics>(player2, Physics::point2<float>(400.f, 400.f), 45.f, 520.f);
       physics->setAcceleration({ 0.f, 520.f });
-      player->addComponent(compType::kPhysics, physics);
+      player2->addComponent(compType::kPhysics, physics);
 
-      auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player);
+      auto sprite = std::make_shared<ObjectComponent::cSprite>(1, player2);
       sprite->setScale(1.5, 1.5);
-      player->addComponent(compType::kSprite, sprite);
+      player2->addComponent(compType::kSprite, sprite);
 
-      auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player, input_manager_);
-      kb->changeKeyBind(1, Input::InputManager::Key::kW);
-      kb->changeKeyBind(2, Input::InputManager::Key::kA);
-      kb->changeKeyBind(3, Input::InputManager::Key::kD);
-      player->addComponent(compType::kMovement, kb);
-
-      auto animation = std::make_shared<ObjectComponent::cAnimation>(player);
+      auto animation = std::make_shared<ObjectComponent::cAnimation>(player2);
       {
         auto animation_1 = std::make_unique<ObjectComponent::cAnimation::Animation>(ObjectComponent::cAnimation::FacingDirection::kRight);
 
@@ -259,9 +250,27 @@ namespace GobletOfFire::Scene {
         animation->addAnimation(6, std::move(animation_));
       }
       animation->setAnimationState(4);
-      player->addComponent(compType::kAnimation, animation);
+      player2->addComponent(compType::kAnimation, animation);
 
-      object_collection_->add(player);
+      object_collection_->add(player2);
+    }
+
+    {
+      auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player2, input_manager_, player1);
+      kb->changeKeyBind(1, Input::InputManager::Key::kUp);
+      kb->changeKeyBind(2, Input::InputManager::Key::kLeft);
+      kb->changeKeyBind(3, Input::InputManager::Key::kRight);
+      kb->changeKeyBind(4, Input::InputManager::Key::k0);
+      player2->addComponent(ObjectComponent::iComponent::Type::kMovement, kb);
+    }
+
+    {
+      auto kb = std::make_shared<ObjectComponent::cKeyboardMovement>(player1, input_manager_, player2);
+      kb->changeKeyBind(1, Input::InputManager::Key::kW);
+      kb->changeKeyBind(2, Input::InputManager::Key::kA);
+      kb->changeKeyBind(3, Input::InputManager::Key::kD);
+      kb->changeKeyBind(4, Input::InputManager::Key::kF);
+      player1->addComponent(ObjectComponent::iComponent::Type::kMovement, kb);
     }
 
     {

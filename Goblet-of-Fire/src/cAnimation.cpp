@@ -132,5 +132,16 @@ namespace GobletOfFire {
       }
     }
 
+    cAnimation::FacingDirection cAnimation::getDirection() const {
+      if (current_state_ != 0u) {
+        auto it = animations_.find(current_state_);
+        if (it != animations_.end()) {
+          return it->second->getDirection();
+        }
+      }
+
+      return FacingDirection::kNone;
+    }
+
   }
 }

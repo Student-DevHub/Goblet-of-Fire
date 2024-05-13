@@ -15,7 +15,7 @@ namespace GobletOfFire {
     class InputManager {
     public:
       enum class Key {
-        kW = 0, kA, kS, kD,
+        kW = 0, kA, kS, kD, kF, k0,
         kUp, kDown, kLeft, kRight,
         kEnter
       };

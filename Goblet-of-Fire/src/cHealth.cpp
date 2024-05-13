@@ -1,7 +1,8 @@
 #include "cHealth.hpp"
+#include <iostream>
 
 namespace GobletOfFire::ObjectComponent {
-  void cHealth::create() {}
+  void cHealth::create() { this->health_ = 100; }
   void cHealth::destroy() {}
   void cHealth::activate() {}
   void cHealth::deActivate() {}
@@ -14,6 +15,7 @@ namespace GobletOfFire::ObjectComponent {
 
   void cHealth::takeDamage(double damage) {
     health_ -= damage;
+    std::cerr << "Ouch!" << damage << " " << health_ << "\n";
     notify();
   }
 

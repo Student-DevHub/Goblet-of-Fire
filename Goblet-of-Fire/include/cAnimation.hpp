@@ -63,6 +63,7 @@ namespace GobletOfFire {
 			void setAnimationState(uint32_t);
 			const uint32_t getAnimationState() const;
 			void changeDirection(FacingDirection);
+			FacingDirection getDirection() const;
 
 		private:
 			std::weak_ptr<iObject> owner_;
