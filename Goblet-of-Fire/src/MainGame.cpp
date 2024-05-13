@@ -7,6 +7,7 @@ namespace GobletOfFire::Scene {
     : input_manager_(input), scene_manager_(scene_manager) {}
 
   void MainGame::create() {
+    quadtree_ = std::make_shared<Physics::QuadTree>();
     object_collection_ = std::make_unique<ObjectComponent::ObjectCollection>();
 
     local_buffer_ = std::make_shared<Graphics::buffer>();
@@ -20,6 +21,17 @@ namespace GobletOfFire::Scene {
 
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player->addComponent(compType::kTransform, transform);
+
+      ObjectComponent::cCollision::CollisionBox box;
+      box.offset_.x = 20.f;
+      box.offset_.y = 16.f;
+      box.d_.x = 23.f;
+      box.d_.y = 33.f;
+
+      auto collision = std::make_shared<ObjectComponent::cCollision>(
+        player, quadtree_, box, ObjectComponent::cCollision::Layer::kPlayerLayer
+      );
+      player->addComponent(ObjectComponent::iComponent::Type::kCollision, collision);
 
       auto physics = std::make_shared<ObjectComponent::cPhysics>(player, Physics::point2<float>(400.f, 400.f), 45.f, 480.f);
       player->addComponent(compType::kPhysics, physics);

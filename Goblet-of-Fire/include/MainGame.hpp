@@ -10,6 +10,8 @@
 #include <Utilities.hpp>
 #include <Design_patterns.hpp>
 
+#include <QuadTree.hpp>
+
 namespace GobletOfFire {
   namespace Scene {
     class MainGame : public Scene::iScene{
@@ -40,6 +42,7 @@ namespace GobletOfFire {
       std::shared_ptr<Input::InputManager> input_manager_;
       std::weak_ptr<Core::SceneManager> scene_manager_;
 
+      std::shared_ptr<Physics::QuadTree> quadtree_;
     };
   }
 }

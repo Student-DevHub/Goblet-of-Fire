@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cAnimation.hpp" />
+    <ClInclude Include="include\cCollision.hpp" />
     <ClInclude Include="include\CharacterSelectionA.hpp" />
     <ClInclude Include="include\CharacterSelectionB.hpp" />
     <ClInclude Include="include\cKeyboardMovement.hpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="include\ObjectComponents.hpp" />
     <ClInclude Include="include\ObserverPattern.hpp" />
     <ClInclude Include="include\Physics.hpp" />
+    <ClInclude Include="include\QuadTree.hpp" />
     <ClInclude Include="include\ResourceManager.hpp" />
     <ClInclude Include="include\iScene.hpp" />
     <ClInclude Include="include\SceneManager.hpp" />
@@ -51,6 +53,7 @@
     <ClInclude Include="include\Utilities.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\cCollision.cpp" />
     <ClCompile Include="src\cAnimation.cpp" />
     <ClCompile Include="src\CharacterSelectionA.cpp" />
     <ClCompile Include="src\CharacterSelectionB.cpp" />
@@ -66,6 +69,7 @@
     <ClCompile Include="src\NamespaceVars.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\ObjectCollection.cpp" />
+    <ClCompile Include="src\QuadTree.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\TestScene.cpp" />

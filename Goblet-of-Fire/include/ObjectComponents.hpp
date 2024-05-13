@@ -30,5 +30,6 @@ namespace GobletOfFire {
 #include "cAnimation.hpp"
 #include "cKeyboardMovement.hpp"
 #include "cPhysics.hpp"
+#include "cCollision.hpp"
 
 #endif // !OBJECT_COMPONENT_HPP
