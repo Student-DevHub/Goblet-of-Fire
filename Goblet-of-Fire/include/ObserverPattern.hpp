@@ -13,16 +13,16 @@ namespace GobletOfFire {
     class Observer : public std::enable_shared_from_this<Observer<SubjectType>> {
     public:
       virtual ~Observer() {}
-      virtual void update(const Subject<SubjectType>& subject) = 0;
-      virtual void subscribe(Subject<SubjectType>& subject) = 0;
+      virtual void update(Subject<SubjectType>* subject) = 0;
+      virtual void subscribe(Subject<SubjectType>* subject) = 0;
     };
 
     template <class SubjectType>
     class Subject {
     public:
       virtual ~Subject() {}
-      void attach(const std::weak_ptr<Observer<SubjectType>>& observer) {
-        observers_.emplace(std::move(observer));
+      void attach(const std::shared_ptr<Observer<SubjectType>>& observer) {
+        observers_.push_back(observer);
       }
       void detach(const std::weak_ptr<Observer<SubjectType>>& observer) {
         removeExpired();
@@ -39,7 +39,7 @@ namespace GobletOfFire {
       void notify() {
         removeExpired();
         auto notify_all = [&](std::weak_ptr<Observer<SubjectType>>& observer) {
-          observer.lock()->update(*this); // Use *this for clarity
+          observer.lock()->update(this);
           };
         std::for_each(observers_.begin(), observers_.end(), notify_all);
       }

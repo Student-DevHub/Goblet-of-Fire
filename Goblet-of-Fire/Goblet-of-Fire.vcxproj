@@ -23,10 +23,12 @@
     <ClInclude Include="include\cCollision.hpp" />
     <ClInclude Include="include\CharacterSelectionA.hpp" />
     <ClInclude Include="include\CharacterSelectionB.hpp" />
+    <ClInclude Include="include\cHealth.hpp" />
     <ClInclude Include="include\cKeyboardMovement.hpp" />
     <ClInclude Include="include\cPhysics.hpp" />
     <ClInclude Include="include\cSprite.hpp" />
     <ClInclude Include="include\cTransform.hpp" />
+    <ClInclude Include="include\HealthBar.hpp" />
     <ClInclude Include="include\iComponent.hpp" />
     <ClInclude Include="include\Core.hpp" />
     <ClInclude Include="include\CoreEngine.hpp" />
@@ -59,11 +61,13 @@
     <ClCompile Include="src\cAnimation.cpp" />
     <ClCompile Include="src\CharacterSelectionA.cpp" />
     <ClCompile Include="src\CharacterSelectionB.cpp" />
+    <ClCompile Include="src\cHealth.cpp" />
     <ClCompile Include="src\cKeyboardMovement.cpp" />
     <ClCompile Include="src\CoreEngine.cpp" />
     <ClCompile Include="src\cPhysics.cpp" />
     <ClCompile Include="src\cSprite.cpp" />
     <ClCompile Include="src\cTransform.cpp" />
+    <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\LedgeCollision.cpp" />
     <ClCompile Include="src\main.cpp" />

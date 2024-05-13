@@ -94,6 +94,12 @@
     <ClCompile Include="src\LedgeCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cHealth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HealthBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -196,6 +202,12 @@
       <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
     <ClInclude Include="include\LedgeCollision.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cHealth.hpp">
+      <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HealthBar.hpp">
       <Filter>Scenes\Objects and Components</Filter>
     </ClInclude>
   </ItemGroup>

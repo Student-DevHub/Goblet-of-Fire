@@ -27,7 +27,13 @@ namespace GobletOfFire {
       {1, "igris_sprite_sheet.png"},
       {50, "map_1_bg.png"},
       {51, "map_1_fg.png"}, 
-      {52, "map_1_ledge.png"}
+      {52, "map_1_ledge.png"},
+      {150, "health_bar_1_1.png"},
+      {151, "health_bar_1_2.png"},
+      {152, "health_bar_1_3.png"},
+      {153, "health_bar_2_1.png"},
+      {154, "health_bar_2_2.png"},
+      {155, "health_bar_2_3.png"}
         //add more mappings
     };
   }

@@ -22,6 +22,15 @@ namespace GobletOfFire::Scene {
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player->addComponent(compType::kTransform, transform);
 
+      auto health = std::make_shared<ObjectComponent::cHealth>();
+      player->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+
+      auto health_bar = std::make_shared<ObjectComponent::HealthBar>(1);
+      health_bar->subscribe(health.get());
+      auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
+      object_collection_->add(health_obj);
+
+
       ObjectComponent::cCollision::CollisionBox box;
       box.offset_.x = 20.f;
       box.offset_.y = 16.f;
@@ -137,6 +146,14 @@ namespace GobletOfFire::Scene {
 
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player->addComponent(compType::kTransform, transform);
+
+      auto health = std::make_shared<ObjectComponent::cHealth>();
+      player->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+
+      auto health_bar = std::make_shared<ObjectComponent::HealthBar>(2);
+      health_bar->subscribe(health.get());
+      auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
+      object_collection_->add(health_obj);
 
       ObjectComponent::cCollision::CollisionBox box;
       box.offset_.x = 20.f;

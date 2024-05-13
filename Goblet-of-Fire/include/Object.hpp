@@ -27,7 +27,7 @@ namespace GobletOfFire {
       void activate() override;
       void deActivate() override;
 
-      void update(const iComponent::Type, const Utilities::Time::duration) const override;
+      void update(const iComponent::Type, const Utilities::Time::duration) override;
       void render(Graphics::buffer&) const override;
 
       void addComponent(const iComponent::Type, const std::shared_ptr<iComponent>&) override;

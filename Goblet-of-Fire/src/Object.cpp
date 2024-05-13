@@ -37,7 +37,7 @@ namespace GobletOfFire {
       std::for_each(components_.begin(), components_.end(), deActivate_components);
     }
 
-    void Object::update(const iComponent::Type type, const Utilities::Time::duration dt) const {
+    void Object::update(const iComponent::Type type, const Utilities::Time::duration dt) {
       auto component = getComponent(type);
       if (component) {
         component->update(dt);

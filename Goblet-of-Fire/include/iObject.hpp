@@ -18,7 +18,7 @@ namespace GobletOfFire {
       virtual void activate() = 0;
       virtual void deActivate() = 0;
 
-      virtual void update(const iComponent::Type, const Utilities::Time::duration) const = 0;
+      virtual void update(const iComponent::Type, const Utilities::Time::duration) = 0;
       virtual void render(Graphics::buffer&) const = 0;
 
       virtual void addComponent(const iComponent::Type, const std::shared_ptr<iComponent>&) = 0;
