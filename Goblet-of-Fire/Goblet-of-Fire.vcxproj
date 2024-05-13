@@ -95,10 +95,20 @@
     <Image Include="resources\character_selection_b_o4.png" />
     <Image Include="resources\character_selection_b_o5.png" />
     <Image Include="resources\character_selection_b_o6.png" />
+    <Image Include="resources\health_bar_1_1.png" />
+    <Image Include="resources\health_bar_1_2.png" />
+    <Image Include="resources\health_bar_1_3.png" />
+    <Image Include="resources\health_bar_2_1.png" />
+    <Image Include="resources\health_bar_2_2.png" />
+    <Image Include="resources\health_bar_2_3.png" />
+    <Image Include="resources\igris_sprite_sheet.png" />
     <Image Include="resources\main_scene_base.png" />
     <Image Include="resources\main_scene_o1.png" />
     <Image Include="resources\main_scene_o2.png" />
     <Image Include="resources\main_scene_o3.png" />
+    <Image Include="resources\map_1_bg.png" />
+    <Image Include="resources\map_1_fg.png" />
+    <Image Include="resources\map_1_ledge.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

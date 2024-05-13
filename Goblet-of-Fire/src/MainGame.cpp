@@ -369,12 +369,14 @@ namespace GobletOfFire::Scene {
     quadtree_->update();
     object_collection_->update(compType::kCollision, dt);
     object_collection_->update(compType::kSprite, dt);
+    //update healthbar logic here
     last_update_ = Utilities::Time::clock::now();
   }
 
   void MainGame::updateRender() {
     local_buffer_->clear(Graphics::color::Black);
     object_collection_->render(*local_buffer_);
+    //render healthbars. 
     local_buffer_->display();
   }
 

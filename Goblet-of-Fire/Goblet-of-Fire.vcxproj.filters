@@ -260,5 +260,35 @@
     <Image Include="resources\main_scene_o3.png">
       <Filter>Scenes\Resources</Filter>
     </Image>
+    <Image Include="resources\health_bar_1_1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\health_bar_1_2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\health_bar_1_3.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\health_bar_2_1.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\health_bar_2_2.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\health_bar_2_3.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\igris_sprite_sheet.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\map_1_bg.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\map_1_fg.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
+    <Image Include="resources\map_1_ledge.png">
+      <Filter>Scenes\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
