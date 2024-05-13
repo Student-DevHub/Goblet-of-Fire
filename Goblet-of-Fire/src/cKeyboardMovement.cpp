@@ -78,6 +78,7 @@ namespace GobletOfFire::ObjectComponent {
     else {
       animation_.lock()->setAnimationState(3);
     }
+    physics_.lock()->setVelocity(velocity);
   }
 
   void cKeyboardMovement::whileOnGround() {
