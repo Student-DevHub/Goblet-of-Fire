@@ -100,6 +100,9 @@
     <ClCompile Include="src\HealthBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\EndScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core.hpp">
@@ -209,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="include\HealthBar.hpp">
       <Filter>Scenes\Objects and Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EndScreen.hpp">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

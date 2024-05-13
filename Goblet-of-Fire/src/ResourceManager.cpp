@@ -33,7 +33,9 @@ namespace GobletOfFire {
       {152, "health_bar_1_3.png"},
       {153, "health_bar_2_1.png"},
       {154, "health_bar_2_2.png"},
-      {155, "health_bar_2_3.png"}
+      {155, "health_bar_2_3.png"},
+      {200, "winner_a.png"},
+      {201, "winner_b.png"}
         //add more mappings
     };
   }

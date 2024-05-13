@@ -12,13 +12,16 @@ namespace GobletOfFire {
       auto main_menu = std::make_shared<Scene::MainMenu>(shared_from_this(), input_handler_, main_engine_);
       auto selection_a = std::make_shared<Scene::CharacterS_A>(shared_from_this(), input_handler_);
       auto selection_b = std::make_shared<Scene::CharacterS_B>(shared_from_this(), input_handler_);
-      auto main_game = std::make_shared<Scene::MainGame>(shared_from_this(), input_handler_);
+      auto winA = std::make_shared<Scene::EndScreenA>(shared_from_this(), input_handler_);
+      auto winB = std::make_shared<Scene::EndScreenB>(shared_from_this(), input_handler_);
 
       addNewScene(std::make_pair(1, main_menu));
       addNewScene(std::make_pair(2, selection_a));
       addNewScene(std::make_pair(3, selection_b));
-      addNewScene(std::make_pair(4, main_game));
-      switchTo(4);
+      addNewScene(std::make_pair(5, winA));
+      addNewScene(std::make_pair(6, winB));
+      
+      switchTo(1);
     }
 
     void SceneManager::update() {
@@ -65,7 +68,7 @@ namespace GobletOfFire {
       auto it = scenes_.find(id);
 
       if (it == scenes_.end() || it->first == current_scene_) {
-        throw std::logic_error("Scene either does not exist or is the current scene");
+        return;
       }
 
       scenes_.erase(it);

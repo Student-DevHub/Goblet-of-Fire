@@ -61,6 +61,7 @@ namespace GobletOfFire {
 
     void MainMenu::activate() {
       updateOption(0);
+      scene_manager_.lock()->remove(4u);
     }
 
     void MainMenu::updateOption(uint32_t option) {

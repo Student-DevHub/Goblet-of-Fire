@@ -33,7 +33,7 @@ namespace GobletOfFire {
       virtual std::shared_ptr<Graphics::buffer> getBuffer() const override;
 
     private:
-      void processExit();
+      void checkWinner();
 
       std::unique_ptr<ObjectComponent::ObjectCollection> object_collection_;
       std::shared_ptr<Graphics::buffer> local_buffer_;
@@ -44,6 +44,9 @@ namespace GobletOfFire {
       std::weak_ptr<Core::SceneManager> scene_manager_;
 
       std::shared_ptr<Physics::QuadTree> quadtree_;
+
+      std::shared_ptr<ObjectComponent::cHealth> p1;
+      std::shared_ptr<ObjectComponent::cHealth> p2;
     };
   }
 }

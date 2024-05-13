@@ -25,11 +25,11 @@ namespace GobletOfFire::Scene {
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player1->addComponent(compType::kTransform, transform);
 
-      auto health = std::make_shared<ObjectComponent::cHealth>();
-      player1->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+      p1 = std::make_shared<ObjectComponent::cHealth>();
+      player1->addComponent(ObjectComponent::iComponent::Type::kHealth, p1);
 
       auto health_bar = std::make_shared<ObjectComponent::HealthBar>(1);
-      health->attach(health_bar);
+      p1->attach(health_bar);
       auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
       object_collection_->add(health_obj);
 
@@ -144,11 +144,11 @@ namespace GobletOfFire::Scene {
       auto transform = std::make_shared<ObjectComponent::cTransform>(593.f, 485.f);
       player2->addComponent(compType::kTransform, transform);
 
-      auto health = std::make_shared<ObjectComponent::cHealth>();
-      player2->addComponent(ObjectComponent::iComponent::Type::kHealth, health);
+      p2 = std::make_shared<ObjectComponent::cHealth>();
+      player2->addComponent(ObjectComponent::iComponent::Type::kHealth, p2);
 
       auto health_bar = std::make_shared<ObjectComponent::HealthBar>(2);
-      health->attach(health_bar);
+      p2->attach(health_bar);
       auto health_obj = std::make_shared<ObjectComponent::HealthBarObjectAdapter>(health_bar);
       object_collection_->add(health_obj);
 
@@ -386,7 +386,6 @@ namespace GobletOfFire::Scene {
     using compType = ObjectComponent::iComponent::Type;
 
     auto dt = Utilities::Time::getTimeElapsed(last_update_);
-    processExit();
     object_collection_->processRemovals();
     object_collection_->processAddition();
     object_collection_->update(compType::kMovement, dt);
@@ -395,14 +394,13 @@ namespace GobletOfFire::Scene {
     quadtree_->update();
     object_collection_->update(compType::kCollision, dt);
     object_collection_->update(compType::kSprite, dt);
-    //update healthbar logic here
     last_update_ = Utilities::Time::clock::now();
+    checkWinner();
   }
 
   void MainGame::updateRender() {
     local_buffer_->clear(Graphics::color::Black);
     object_collection_->render(*local_buffer_);
-    //render healthbars. 
     local_buffer_->display();
   }
 
@@ -410,9 +408,12 @@ namespace GobletOfFire::Scene {
     return local_buffer_;
   }
 
-  void MainGame::processExit() {
-    if (input_manager_->isKeyPressed(Input::InputManager::Key::kEnter)) {
-      scene_manager_.lock()->switchTo(1);
+  void MainGame::checkWinner() {
+    if (p1->getHealth() <= 0.0) {
+      scene_manager_.lock()->switchTo(5);
+    }
+    else if (p2->getHealth() <= 0.0) {
+      scene_manager_.lock()->switchTo(6);
     }
   }
 }

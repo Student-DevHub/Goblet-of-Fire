@@ -44,7 +44,8 @@ namespace GobletOfFire {
     void CharacterS_B::createCallBacks() {
       auto continue_ = [&]() {
         if (scene_manager_.expired()) return;
-
+        auto ptr = std::make_shared<MainGame>(scene_manager_.lock(), input_manager_);
+        scene_manager_.lock()->addNewScene(std::make_pair(4, ptr));
         scene_manager_.lock()->switchTo(4);
         };
 
@@ -79,7 +80,6 @@ namespace GobletOfFire {
       local_buffer_->draw(*background_);
       local_buffer_->draw(*base_);
       local_buffer_->draw(*option_);
-      local_buffer_->display();
     }
 
     uint32_t CharacterS_B::processInput() {

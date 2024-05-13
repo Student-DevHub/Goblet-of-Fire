@@ -28,6 +28,7 @@
     <ClInclude Include="include\cPhysics.hpp" />
     <ClInclude Include="include\cSprite.hpp" />
     <ClInclude Include="include\cTransform.hpp" />
+    <ClInclude Include="include\EndScreen.hpp" />
     <ClInclude Include="include\HealthBar.hpp" />
     <ClInclude Include="include\iComponent.hpp" />
     <ClInclude Include="include\Core.hpp" />
@@ -67,6 +68,7 @@
     <ClCompile Include="src\cPhysics.cpp" />
     <ClCompile Include="src\cSprite.cpp" />
     <ClCompile Include="src\cTransform.cpp" />
+    <ClCompile Include="src\EndScreen.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\LedgeCollision.cpp" />

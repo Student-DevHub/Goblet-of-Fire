@@ -20,5 +20,6 @@ namespace GobletOfFire {
 #include "CharacterSelectionA.hpp"
 #include "CharacterSelectionB.hpp"
 #include "MainGame.hpp"
+#include "EndScreen.hpp"
 
 #endif // !SCENES_HP
